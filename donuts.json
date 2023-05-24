@@ -1,0 +1,25 @@
+{
+  "donuts": [
+    {
+      "id": "image number",
+      "name": "donut name",
+      "flavor": "donut flavor",
+      "price": "donut price",
+      "image": "image filename"
+    },
+    {
+      "id": "1",
+      "name": "Naya Feelings",
+      "flavor": "Chocolate",
+      "price": "23",
+      "image": "1.png"
+    },
+    {
+      "id": "2",
+      "name": "Stawberrynuts",
+      "flavor": "Strawberry",
+      "price": "24",
+      "image": "2.png"
+    }
+  ]
+}

@@ -1,0 +1,704 @@
+{
+  "data": [
+    {
+      "employee_firstname": "Ludie",
+      "employee_lastname": "Swift",
+      "email": "Hermann_Hammes@yahoo.com",
+      "password": "@Password123",
+      "role": "Manager"
+    },
+    {
+      "employee_firstname": "Coy",
+      "employee_lastname": "Kuhlman",
+      "email": "Gregorio_Krajcik@hotmail.com",
+      "password": "@Password123",
+      "role": "Manager"
+    },
+    {
+      "employee_firstname": "Cletus",
+      "employee_lastname": "Flatley",
+      "email": "Jo_Glover8@hotmail.com",
+      "password": "@Password123",
+      "role": "Order Fulfillment Specialist"
+    },
+    {
+      "employee_firstname": "Rico",
+      "employee_lastname": "Cole",
+      "email": "Terrance19@gmail.com",
+      "password": "@Password123",
+      "role": "Cashier"
+    },
+    {
+      "employee_firstname": "Will",
+      "employee_lastname": "Murray",
+      "email": "Lisette.Willms85@yahoo.com",
+      "password": "@Password123",
+      "role": "Manager"
+    },
+    {
+      "employee_firstname": "Arno",
+      "employee_lastname": "Moore",
+      "email": "Yazmin10@yahoo.com",
+      "password": "@Password123",
+      "role": "Manager"
+    },
+    {
+      "employee_firstname": "Angelica",
+      "employee_lastname": "Nitzsche",
+      "email": "Wilfredo33@yahoo.com",
+      "password": "@Password123",
+      "role": "Cashier"
+    },
+    {
+      "employee_firstname": "Darrion",
+      "employee_lastname": "Blanda",
+      "email": "Hubert41@gmail.com",
+      "password": "@Password123",
+      "role": "Cashier"
+    },
+    {
+      "employee_firstname": "Kaleb",
+      "employee_lastname": "Waelchi",
+      "email": "Dean_Toy94@yahoo.com",
+      "password": "@Password123",
+      "role": "Order Fulfillment Specialist"
+    },
+    {
+      "employee_firstname": "Mireya",
+      "employee_lastname": "Conroy",
+      "email": "Cristobal40@hotmail.com",
+      "password": "@Password123",
+      "role": "Order Fulfillment Specialist"
+    },
+    {
+      "employee_firstname": "Willa",
+      "employee_lastname": "Yundt",
+      "email": "Dax39@yahoo.com",
+      "password": "@Password123",
+      "role": "Order Fulfillment Specialist"
+    },
+    {
+      "employee_firstname": "Marcelo",
+      "employee_lastname": "Kertzmann",
+      "email": "Enola89@yahoo.com",
+      "password": "@Password123",
+      "role": "Cashier"
+    },
+    {
+      "employee_firstname": "Mellie",
+      "employee_lastname": "Huel",
+      "email": "Brenden_Jaskolski@yahoo.com",
+      "password": "@Password123",
+      "role": "Manager"
+    },
+    {
+      "employee_firstname": "Aurelio",
+      "employee_lastname": "Corwin",
+      "email": "Kian_Denesik83@gmail.com",
+      "password": "@Password123",
+      "role": "Manager"
+    },
+    {
+      "employee_firstname": "Darryl",
+      "employee_lastname": "Barton",
+      "email": "Magnolia_Terry@hotmail.com",
+      "password": "@Password123",
+      "role": "Manager"
+    },
+    {
+      "employee_firstname": "Mona",
+      "employee_lastname": "Vandervort",
+      "email": "Lindsay68@gmail.com",
+      "password": "@Password123",
+      "role": "Cashier"
+    },
+    {
+      "employee_firstname": "Antwon",
+      "employee_lastname": "Jacobs",
+      "email": "Seamus.Kilback27@yahoo.com",
+      "password": "@Password123",
+      "role": "Order Fulfillment Specialist"
+    },
+    {
+      "employee_firstname": "Josie",
+      "employee_lastname": "Lebsack",
+      "email": "Brando_Ward@gmail.com",
+      "password": "@Password123",
+      "role": "Order Fulfillment Specialist"
+    },
+    {
+      "employee_firstname": "Ricardo",
+      "employee_lastname": "Harber",
+      "email": "Emely.Parisian@hotmail.com",
+      "password": "@Password123",
+      "role": "Manager"
+    },
+    {
+      "employee_firstname": "Ulises",
+      "employee_lastname": "Okuneva",
+      "email": "Marina76@gmail.com",
+      "password": "@Password123",
+      "role": "Manager"
+    },
+    {
+      "employee_firstname": "Adell",
+      "employee_lastname": "Block",
+      "email": "Tate_Reinger77@gmail.com",
+      "password": "@Password123",
+      "role": "Manager"
+    },
+    {
+      "employee_firstname": "Kory",
+      "employee_lastname": "Adams",
+      "email": "Aric55@gmail.com",
+      "password": "@Password123",
+      "role": "Order Fulfillment Specialist"
+    },
+    {
+      "employee_firstname": "Luciano",
+      "employee_lastname": "Hickle",
+      "email": "Berta.Deckow53@yahoo.com",
+      "password": "@Password123",
+      "role": "Order Fulfillment Specialist"
+    },
+    {
+      "employee_firstname": "Lesly",
+      "employee_lastname": "Beier",
+      "email": "Chadrick76@hotmail.com",
+      "password": "@Password123",
+      "role": "Order Fulfillment Specialist"
+    },
+    {
+      "employee_firstname": "Brandi",
+      "employee_lastname": "Kreiger",
+      "email": "Madonna37@hotmail.com",
+      "password": "@Password123",
+      "role": "Manager"
+    },
+    {
+      "employee_firstname": "Aileen",
+      "employee_lastname": "Lebsack",
+      "email": "Maddison.Raynor8@hotmail.com",
+      "password": "@Password123",
+      "role": "Order Fulfillment Specialist"
+    },
+    {
+      "employee_firstname": "Rafael",
+      "employee_lastname": "Corkery",
+      "email": "Cruz.Schmeler@gmail.com",
+      "password": "@Password123",
+      "role": "Manager"
+    },
+    {
+      "employee_firstname": "Isac",
+      "employee_lastname": "Wehner",
+      "email": "Keith55@hotmail.com",
+      "password": "@Password123",
+      "role": "Cashier"
+    },
+    {
+      "employee_firstname": "Elmore",
+      "employee_lastname": "Mayer",
+      "email": "Asha_Towne57@gmail.com",
+      "password": "@Password123",
+      "role": "Order Fulfillment Specialist"
+    },
+    {
+      "employee_firstname": "Anita",
+      "employee_lastname": "Larson",
+      "email": "Lonnie64@yahoo.com",
+      "password": "@Password123",
+      "role": "Manager"
+    },
+    {
+      "employee_firstname": "Madalyn",
+      "employee_lastname": "Fisher",
+      "email": "Milton29@gmail.com",
+      "password": "@Password123",
+      "role": "Manager"
+    },
+    {
+      "employee_firstname": "Marilou",
+      "employee_lastname": "Windler",
+      "email": "Sarai11@gmail.com",
+      "password": "@Password123",
+      "role": "Cashier"
+    },
+    {
+      "employee_firstname": "Garnet",
+      "employee_lastname": "Howe",
+      "email": "Carlee_Turner20@gmail.com",
+      "password": "@Password123",
+      "role": "Manager"
+    },
+    {
+      "employee_firstname": "Tommie",
+      "employee_lastname": "Rohan",
+      "email": "Roslyn.Murphy62@hotmail.com",
+      "password": "@Password123",
+      "role": "Manager"
+    },
+    {
+      "employee_firstname": "Buford",
+      "employee_lastname": "Weber",
+      "email": "Akeem53@yahoo.com",
+      "password": "@Password123",
+      "role": "Order Fulfillment Specialist"
+    },
+    {
+      "employee_firstname": "Aracely",
+      "employee_lastname": "Moen",
+      "email": "Lon.Gislason99@yahoo.com",
+      "password": "@Password123",
+      "role": "Manager"
+    },
+    {
+      "employee_firstname": "Elisabeth",
+      "employee_lastname": "Miller",
+      "email": "Kailey.Kertzmann1@yahoo.com",
+      "password": "@Password123",
+      "role": "Order Fulfillment Specialist"
+    },
+    {
+      "employee_firstname": "Tiara",
+      "employee_lastname": "Kris",
+      "email": "Terrence86@hotmail.com",
+      "password": "@Password123",
+      "role": "Cashier"
+    },
+    {
+      "employee_firstname": "Margot",
+      "employee_lastname": "Wolff",
+      "email": "Andrew_Macejkovic@gmail.com",
+      "password": "@Password123",
+      "role": "Order Fulfillment Specialist"
+    },
+    {
+      "employee_firstname": "Faye",
+      "employee_lastname": "Metz",
+      "email": "Hardy_Haag89@yahoo.com",
+      "password": "@Password123",
+      "role": "Manager"
+    },
+    {
+      "employee_firstname": "Florian",
+      "employee_lastname": "Smith",
+      "email": "Orpha82@yahoo.com",
+      "password": "@Password123",
+      "role": "Order Fulfillment Specialist"
+    },
+    {
+      "employee_firstname": "Emmett",
+      "employee_lastname": "Conroy",
+      "email": "Tiana46@hotmail.com",
+      "password": "@Password123",
+      "role": "Manager"
+    },
+    {
+      "employee_firstname": "Kylie",
+      "employee_lastname": "Dickens",
+      "email": "Asia.Bradtke@yahoo.com",
+      "password": "@Password123",
+      "role": "Cashier"
+    },
+    {
+      "employee_firstname": "Alphonso",
+      "employee_lastname": "Blick",
+      "email": "Laurianne_Dooley@hotmail.com",
+      "password": "@Password123",
+      "role": "Manager"
+    },
+    {
+      "employee_firstname": "Wilfrid",
+      "employee_lastname": "Orn",
+      "email": "Winona.Spencer62@yahoo.com",
+      "password": "@Password123",
+      "role": "Order Fulfillment Specialist"
+    },
+    {
+      "employee_firstname": "Shanie",
+      "employee_lastname": "Streich",
+      "email": "Fern_Runolfsson@yahoo.com",
+      "password": "@Password123",
+      "role": "Order Fulfillment Specialist"
+    },
+    {
+      "employee_firstname": "Magdalen",
+      "employee_lastname": "Kemmer",
+      "email": "Hattie.Emmerich@hotmail.com",
+      "password": "@Password123",
+      "role": "Manager"
+    },
+    {
+      "employee_firstname": "Colten",
+      "employee_lastname": "Konopelski",
+      "email": "Lila_Pouros86@yahoo.com",
+      "password": "@Password123",
+      "role": "Manager"
+    },
+    {
+      "employee_firstname": "Robbie",
+      "employee_lastname": "Turner",
+      "email": "Cameron.Farrell@hotmail.com",
+      "password": "@Password123",
+      "role": "Manager"
+    },
+    {
+      "employee_firstname": "Everette",
+      "employee_lastname": "Barrows",
+      "email": "Samir80@hotmail.com",
+      "password": "@Password123",
+      "role": "Manager"
+    },
+    {
+      "employee_firstname": "Declan",
+      "employee_lastname": "Smitham",
+      "email": "Dallin84@hotmail.com",
+      "password": "@Password123",
+      "role": "Order Fulfillment Specialist"
+    },
+    {
+      "employee_firstname": "Ben",
+      "employee_lastname": "Rolfson",
+      "email": "Gilda_Hodkiewicz43@gmail.com",
+      "password": "@Password123",
+      "role": "Manager"
+    },
+    {
+      "employee_firstname": "Juston",
+      "employee_lastname": "Grant",
+      "email": "Angela42@yahoo.com",
+      "password": "@Password123",
+      "role": "Order Fulfillment Specialist"
+    },
+    {
+      "employee_firstname": "Jeanie",
+      "employee_lastname": "Larkin",
+      "email": "Shemar.Larkin40@hotmail.com",
+      "password": "@Password123",
+      "role": "Order Fulfillment Specialist"
+    },
+    {
+      "employee_firstname": "Juliet",
+      "employee_lastname": "Anderson",
+      "email": "Mireille_Pagac@hotmail.com",
+      "password": "@Password123",
+      "role": "Order Fulfillment Specialist"
+    },
+    {
+      "employee_firstname": "Kasandra",
+      "employee_lastname": "Crist",
+      "email": "Maximo_Rowe@hotmail.com",
+      "password": "@Password123",
+      "role": "Cashier"
+    },
+    {
+      "employee_firstname": "Lynn",
+      "employee_lastname": "Lesch",
+      "email": "Lurline.Koepp57@yahoo.com",
+      "password": "@Password123",
+      "role": "Manager"
+    },
+    {
+      "employee_firstname": "Mertie",
+      "employee_lastname": "Pouros",
+      "email": "Dwight_Cartwright69@gmail.com",
+      "password": "@Password123",
+      "role": "Manager"
+    },
+    {
+      "employee_firstname": "Adriel",
+      "employee_lastname": "Bergstrom",
+      "email": "Miles.Quigley12@yahoo.com",
+      "password": "@Password123",
+      "role": "Order Fulfillment Specialist"
+    },
+    {
+      "employee_firstname": "Javier",
+      "employee_lastname": "McLaughlin",
+      "email": "Maurice.Hirthe@hotmail.com",
+      "password": "@Password123",
+      "role": "Manager"
+    },
+    {
+      "employee_firstname": "Trey",
+      "employee_lastname": "Weber",
+      "email": "Dangelo13@hotmail.com",
+      "password": "@Password123",
+      "role": "Manager"
+    },
+    {
+      "employee_firstname": "Bettye",
+      "employee_lastname": "Schuster",
+      "email": "Julius.Huel65@yahoo.com",
+      "password": "@Password123",
+      "role": "Order Fulfillment Specialist"
+    },
+    {
+      "employee_firstname": "Skyla",
+      "employee_lastname": "Stanton",
+      "email": "Winona.Dickens15@yahoo.com",
+      "password": "@Password123",
+      "role": "Manager"
+    },
+    {
+      "employee_firstname": "Nikko",
+      "employee_lastname": "McDermott",
+      "email": "Laurie_Wisoky31@yahoo.com",
+      "password": "@Password123",
+      "role": "Cashier"
+    },
+    {
+      "employee_firstname": "Stanley",
+      "employee_lastname": "Prohaska",
+      "email": "Immanuel.Kautzer@gmail.com",
+      "password": "@Password123",
+      "role": "Order Fulfillment Specialist"
+    },
+    {
+      "employee_firstname": "Arianna",
+      "employee_lastname": "Klein",
+      "email": "Margaret.Fritsch56@gmail.com",
+      "password": "@Password123",
+      "role": "Order Fulfillment Specialist"
+    },
+    {
+      "employee_firstname": "Sofia",
+      "employee_lastname": "Streich",
+      "email": "Noah41@yahoo.com",
+      "password": "@Password123",
+      "role": "Order Fulfillment Specialist"
+    },
+    {
+      "employee_firstname": "Beulah",
+      "employee_lastname": "Homenick",
+      "email": "Kianna85@yahoo.com",
+      "password": "@Password123",
+      "role": "Manager"
+    },
+    {
+      "employee_firstname": "Annetta",
+      "employee_lastname": "VonRueden",
+      "email": "Glen_Hackett31@yahoo.com",
+      "password": "@Password123",
+      "role": "Order Fulfillment Specialist"
+    },
+    {
+      "employee_firstname": "Joannie",
+      "employee_lastname": "Emard",
+      "email": "Everette.Abshire@yahoo.com",
+      "password": "@Password123",
+      "role": "Order Fulfillment Specialist"
+    },
+    {
+      "employee_firstname": "Libby",
+      "employee_lastname": "Purdy",
+      "email": "Louisa_Bechtelar19@gmail.com",
+      "password": "@Password123",
+      "role": "Manager"
+    },
+    {
+      "employee_firstname": "Jaren",
+      "employee_lastname": "Pollich",
+      "email": "Tracey20@gmail.com",
+      "password": "@Password123",
+      "role": "Order Fulfillment Specialist"
+    },
+    {
+      "employee_firstname": "Genoveva",
+      "employee_lastname": "Quitzon",
+      "email": "Quinn.McCullough60@gmail.com",
+      "password": "@Password123",
+      "role": "Manager"
+    },
+    {
+      "employee_firstname": "Dale",
+      "employee_lastname": "Kiehn",
+      "email": "Vincent_Kris@hotmail.com",
+      "password": "@Password123",
+      "role": "Cashier"
+    },
+    {
+      "employee_firstname": "Jeremy",
+      "employee_lastname": "Grimes",
+      "email": "Danika_Davis@hotmail.com",
+      "password": "@Password123",
+      "role": "Cashier"
+    },
+    {
+      "employee_firstname": "Leopoldo",
+      "employee_lastname": "Schmidt",
+      "email": "Jorge56@gmail.com",
+      "password": "@Password123",
+      "role": "Order Fulfillment Specialist"
+    },
+    {
+      "employee_firstname": "Karli",
+      "employee_lastname": "Cartwright",
+      "email": "Marietta.Schimmel@yahoo.com",
+      "password": "@Password123",
+      "role": "Order Fulfillment Specialist"
+    },
+    {
+      "employee_firstname": "Kameron",
+      "employee_lastname": "Dooley",
+      "email": "Nathen.Schiller@yahoo.com",
+      "password": "@Password123",
+      "role": "Manager"
+    },
+    {
+      "employee_firstname": "Amely",
+      "employee_lastname": "Mitchell",
+      "email": "Kenna.Thompson57@yahoo.com",
+      "password": "@Password123",
+      "role": "Cashier"
+    },
+    {
+      "employee_firstname": "Janice",
+      "employee_lastname": "Jerde",
+      "email": "Fabian36@hotmail.com",
+      "password": "@Password123",
+      "role": "Manager"
+    },
+    {
+      "employee_firstname": "Maxie",
+      "employee_lastname": "Stokes",
+      "email": "Afton_Ernser80@gmail.com",
+      "password": "@Password123",
+      "role": "Cashier"
+    },
+    {
+      "employee_firstname": "Kamille",
+      "employee_lastname": "Altenwerth",
+      "email": "Hazel_Koss@gmail.com",
+      "password": "@Password123",
+      "role": "Manager"
+    },
+    {
+      "employee_firstname": "Francisco",
+      "employee_lastname": "Zemlak",
+      "email": "Amiya_Howe81@yahoo.com",
+      "password": "@Password123",
+      "role": "Cashier"
+    },
+    {
+      "employee_firstname": "Palma",
+      "employee_lastname": "Williamson",
+      "email": "Annie63@hotmail.com",
+      "password": "@Password123",
+      "role": "Manager"
+    },
+    {
+      "employee_firstname": "Jaron",
+      "employee_lastname": "Nader",
+      "email": "Cecelia23@yahoo.com",
+      "password": "@Password123",
+      "role": "Manager"
+    },
+    {
+      "employee_firstname": "Francesco",
+      "employee_lastname": "Buckridge",
+      "email": "Rosina20@hotmail.com",
+      "password": "@Password123",
+      "role": "Order Fulfillment Specialist"
+    },
+    {
+      "employee_firstname": "Jeromy",
+      "employee_lastname": "Abernathy",
+      "email": "Marie.Pfeffer54@yahoo.com",
+      "password": "@Password123",
+      "role": "Manager"
+    },
+    {
+      "employee_firstname": "Filomena",
+      "employee_lastname": "Olson",
+      "email": "Mandy62@gmail.com",
+      "password": "@Password123",
+      "role": "Manager"
+    },
+    {
+      "employee_firstname": "Brannon",
+      "employee_lastname": "Mante",
+      "email": "Hazle_Reynolds@gmail.com",
+      "password": "@Password123",
+      "role": "Order Fulfillment Specialist"
+    },
+    {
+      "employee_firstname": "Joana",
+      "employee_lastname": "Beer",
+      "email": "Octavia_Hegmann@yahoo.com",
+      "password": "@Password123",
+      "role": "Cashier"
+    },
+    {
+      "employee_firstname": "Luisa",
+      "employee_lastname": "Hyatt",
+      "email": "Karlee.Koss@yahoo.com",
+      "password": "@Password123",
+      "role": "Order Fulfillment Specialist"
+    },
+    {
+      "employee_firstname": "Tate",
+      "employee_lastname": "Mann",
+      "email": "Garth55@yahoo.com",
+      "password": "@Password123",
+      "role": "Cashier"
+    },
+    {
+      "employee_firstname": "Freda",
+      "employee_lastname": "Gibson",
+      "email": "Queen_Baumbach95@gmail.com",
+      "password": "@Password123",
+      "role": "Order Fulfillment Specialist"
+    },
+    {
+      "employee_firstname": "Malika",
+      "employee_lastname": "Beahan",
+      "email": "Cristian_Mertz@hotmail.com",
+      "password": "@Password123",
+      "role": "Cashier"
+    },
+    {
+      "employee_firstname": "Antonio",
+      "employee_lastname": "Schaefer",
+      "email": "Cordell_Rempel23@gmail.com",
+      "password": "@Password123",
+      "role": "Cashier"
+    },
+    {
+      "employee_firstname": "Buddy",
+      "employee_lastname": "Crist",
+      "email": "Martin_Barrows@hotmail.com",
+      "password": "@Password123",
+      "role": "Cashier"
+    },
+    {
+      "employee_firstname": "Novella",
+      "employee_lastname": "Durgan",
+      "email": "Bernice.Renner@hotmail.com",
+      "password": "@Password123",
+      "role": "Cashier"
+    },
+    {
+      "employee_firstname": "Cleve",
+      "employee_lastname": "Hartmann",
+      "email": "Kenny.Crona1@gmail.com",
+      "password": "@Password123",
+      "role": "Cashier"
+    },
+    {
+      "employee_firstname": "Kaitlyn",
+      "employee_lastname": "Rosenbaum",
+      "email": "Pattie.Cummings@yahoo.com",
+      "password": "@Password123",
+      "role": "Manager"
+    },
+    {
+      "employee_firstname": "Matteo",
+      "employee_lastname": "Abbott",
+      "email": "Hilbert21@hotmail.com",
+      "password": "@Password123",
+      "role": "Cashier"
+    }
+  ]
+}
