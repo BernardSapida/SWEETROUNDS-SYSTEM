@@ -54,8 +54,6 @@ export default function Table(props: any) {
       `${process.env.NEXT_PUBLIC_URL}/api/v1/cart_items/delete`,
       { cart_id: cart_id }
     );
-
-    console.log(response.data);
   };
 
   const removeToCart = (cart_id: number) => {

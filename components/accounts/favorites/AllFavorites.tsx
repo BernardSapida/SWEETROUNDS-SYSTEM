@@ -9,8 +9,6 @@ export default function AccountPage({ user }: { user: Record<string, any> }) {
   const { data: session } = useSession();
   const [productList, setProductList] = useState<Record<string, any>[]>([]);
 
-  console.log(user.id);
-
   useEffect(() => {
     const fetchFavorites = async () => {
       const response = await axios.post(
@@ -20,7 +18,6 @@ export default function AccountPage({ user }: { user: Record<string, any> }) {
         }
       );
 
-      console.log(response.data);
       const products = response.data.data;
       setProductList(products);
     };

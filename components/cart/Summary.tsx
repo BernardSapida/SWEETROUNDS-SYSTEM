@@ -87,8 +87,6 @@ export default function Summary(props: any) {
       `${process.env.NEXT_PUBLIC_URL}/api/v1/cart_items/delete`,
       { cart_id: cart_id }
     );
-
-    console.log(response.data);
   };
 
   const createOrder = async () => {
@@ -109,7 +107,6 @@ export default function Summary(props: any) {
       }
     );
 
-    console.log(response.data);
     return response.data;
   };
 

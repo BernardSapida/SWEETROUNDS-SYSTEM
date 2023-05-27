@@ -33,8 +33,6 @@ export default function MenuCard(props: any) {
         user_id: user_id,
       }
     );
-
-    console.log(response.data);
   };
 
   const removeToCart = async () => {

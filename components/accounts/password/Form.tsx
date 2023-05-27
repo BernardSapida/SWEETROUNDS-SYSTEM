@@ -11,8 +11,6 @@ export default function ContactForm(props: any) {
   const password = useRef<HTMLInputElement>(null);
   const confirmPassword = useRef<HTMLInputElement>(null);
 
-  console.log(user);
-
   const handleSubmit = async (event: any) => {
     event.preventDefault();
 
@@ -25,8 +23,6 @@ export default function ContactForm(props: any) {
           confirmPassword: confirmPassword.current?.value,
         }
       );
-
-      console.log(response.data);
 
       if (response.data.success) {
         resetForm();
