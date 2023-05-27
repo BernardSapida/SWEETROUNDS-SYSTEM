@@ -13,12 +13,13 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  const { user_id } = req.body;
+  const { user_id, keyword } = req.body;
 
   const response = await axios.post(
-    `${process.env.NEXT_SERVER_URL}/api/v1/products/user_product_list.php`,
+    `${process.env.NEXT_SERVER_URL}/api/v1/products/search_user_list.php`,
     {
       user_id: user_id,
+      keyword: keyword,
     }
   );
 
