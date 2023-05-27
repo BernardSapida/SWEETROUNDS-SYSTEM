@@ -5,6 +5,7 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Swal from "sweetalert2";
 import { useRef } from "react";
 import axios from "axios";
+import { updatePassword } from "@/helpers/accounts";
 
 export default function ContactForm(props: any) {
   const { user } = props;
@@ -15,16 +16,13 @@ export default function ContactForm(props: any) {
     event.preventDefault();
 
     if (notEmptyInputs()) {
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_URL}/api/v1/users/update_password`,
-        {
-          user_id: user.id,
-          password: password.current?.value,
-          confirmPassword: confirmPassword.current?.value,
-        }
+      const response = await updatePassword(
+        user?.id,
+        password.current?.value,
+        confirmPassword.current?.value
       );
 
-      if (response.data.success) {
+      if (response.success) {
         resetForm();
         Swal.fire({
           icon: "success",
@@ -35,7 +33,7 @@ export default function ContactForm(props: any) {
         Swal.fire({
           icon: "error",
           title: "Invalid Password",
-          text: response.data.message,
+          text: response.message,
         });
       }
     }

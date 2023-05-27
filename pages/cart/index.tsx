@@ -3,7 +3,6 @@ import { getSession } from "next-auth/react";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import axios from "axios";
 
-import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
@@ -11,6 +10,7 @@ import { useState, useEffect } from "react";
 
 import Items from "@/components/cart/Items";
 import Summary from "@/components/cart/Summary";
+import { fetchCart, fetchSetting } from "@/helpers/cart";
 
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext
@@ -28,17 +28,12 @@ export const getServerSideProps: GetServerSideProps = async (
       };
     }
 
-    const responseCart = await axios.post(
-      `${process.env.NEXT_PUBLIC_URL}/api/v1/cart_items/read`,
-      { user_id: session?.user.id }
-    );
+    const responseCart = await fetchCart(session?.user.id);
 
-    const responseSetting = await axios.get(
-      `${process.env.NEXT_PUBLIC_URL}/api/v1/settings/read`
-    );
+    const responseSetting = await fetchSetting();
 
-    const cart_items = responseCart.data.data;
-    const settings = responseSetting.data.data;
+    const cart_items = responseCart.data;
+    const settings = responseSetting.data;
 
     return {
       props: {

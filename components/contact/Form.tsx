@@ -5,6 +5,7 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Swal from "sweetalert2";
 import { useRef } from "react";
 import axios from "axios";
+import { sendMessage } from "@/helpers/contact";
 
 export default function ContactForm() {
   const name = useRef<HTMLInputElement>(null);
@@ -16,17 +17,14 @@ export default function ContactForm() {
     event.preventDefault();
 
     if (notEmptyInputs()) {
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_URL}/api/v1/contact_messages/create`,
-        {
-          name: name.current?.value,
-          email: email.current?.value,
-          subject: subject.current?.value,
-          message: message.current?.value,
-        }
+      const response = await sendMessage(
+        name.current?.value,
+        email.current?.value,
+        subject.current?.value,
+        message.current?.value
       );
 
-      if (response.data.success) {
+      if (response.success) {
         resetForm();
 
         Swal.fire({

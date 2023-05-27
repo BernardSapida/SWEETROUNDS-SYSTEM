@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 
 import Card from "@/components/menu/Card";
+import { fetchProductList, fetchProductListByKeyword } from "@/helpers/menu";
 
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext
@@ -23,14 +24,8 @@ export const getServerSideProps: GetServerSideProps = async (
       };
     }
 
-    const response = await axios.post(
-      `${process.env.NEXT_PUBLIC_URL}/api/v1/products/user_product_list`,
-      {
-        user_id: session.user.id,
-      }
-    );
-
-    const products = response.data.data;
+    const response = await fetchProductList(session.user.id);
+    const products = response.data;
 
     return {
       props: {
@@ -63,25 +58,12 @@ export default function AccountPage({
       let response;
 
       if (keyword === "") {
-        response = await axios.post(
-          `${process.env.NEXT_PUBLIC_URL}/api/v1/products/user_product_list`,
-          {
-            user_id: user.id,
-          }
-        );
+        response = await fetchProductList(user.id);
       } else {
-        response = await axios.post(
-          `${process.env.NEXT_PUBLIC_URL}/api/v1/products/search_user_list`,
-          {
-            user_id: user.id,
-            keyword: keyword,
-          }
-        );
+        response = await fetchProductListByKeyword(user.id, keyword);
       }
 
-      console.log(response.data.data);
-
-      setProductList(response.data.data);
+      setProductList(response.data);
     };
 
     fetchData();

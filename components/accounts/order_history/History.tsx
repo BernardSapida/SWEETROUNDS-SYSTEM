@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
-
 import Card from "./Card";
+import { fetchOrderHistory } from "@/helpers/accounts";
 
 export default function OrderHistory(props: any) {
   const [orders, setOrders] = useState<Record<string, any>[]>([]);
@@ -9,14 +8,8 @@ export default function OrderHistory(props: any) {
 
   useEffect(() => {
     const fetchOrders = async () => {
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_URL}/api/v1/orders/user_order_history`,
-        {
-          user_id: user.id,
-        }
-      );
-
-      setOrders(response.data.data);
+      const response = await fetchOrderHistory(user?.id);
+      setOrders(response.data);
     };
 
     fetchOrders();

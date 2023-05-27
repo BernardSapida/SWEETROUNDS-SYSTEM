@@ -4,6 +4,7 @@ import axios from "axios";
 import { useSession } from "next-auth/react";
 
 import Card from "@/components/menu/Card";
+import { fetchFavoriteDonut } from "@/helpers/accounts";
 
 export default function AccountPage({ user }: { user: Record<string, any> }) {
   const { data: session } = useSession();
@@ -11,14 +12,8 @@ export default function AccountPage({ user }: { user: Record<string, any> }) {
 
   useEffect(() => {
     const fetchFavorites = async () => {
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_URL}/api/v1/products/favorites`,
-        {
-          id: user.id,
-        }
-      );
-
-      const products = response.data.data;
+      const response = await fetchFavoriteDonut(user?.id);
+      const products = response.data;
       setProductList(products);
     };
 

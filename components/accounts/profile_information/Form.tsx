@@ -5,6 +5,7 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Swal from "sweetalert2";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { fetchUserInfo, updateUserInfo } from "@/helpers/accounts";
 
 export default function ContactForm(props: any) {
   const { user } = props;
@@ -18,14 +19,8 @@ export default function ContactForm(props: any) {
 
   useEffect(() => {
     const fetchUserInformation = async () => {
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_URL}/api/v1/user_informations/read`,
-        {
-          user_id: user.id,
-        }
-      );
-
-      const data = response.data.data;
+      const response = await fetchUserInfo(user?.id);
+      const data = response.data;
 
       setFirstname(data.firstname);
       setLastname(data.lastname);
@@ -46,21 +41,9 @@ export default function ContactForm(props: any) {
     const data = Object.fromEntries(formData.entries());
 
     if (notEmptyInputs()) {
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_URL}/api/v1/user_informations/update`,
-        {
-          user_id: user.id,
-          firstname: data.firstname,
-          lastname: data.lastname,
-          email: data.email,
-          address_line_1: data.addressLine1,
-          address_line_2: data.addressLine2,
-          city: data.city,
-          contact: data.contact,
-        }
-      );
+      const response = await updateUserInfo(user?.id, data);
 
-      if (response.data.success) {
+      if (response.success) {
         Swal.fire({
           icon: "success",
           title: "Updated Successfully",
