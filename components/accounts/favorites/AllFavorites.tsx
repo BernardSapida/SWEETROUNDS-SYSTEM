@@ -44,6 +44,7 @@ export default function AccountPage({
           <strong>All Favorites</strong>
         </h3>
         <div className="d-flex justify-content-center flex-wrap gap-3">
+          {productList.length == 0 && <p>No favorites in your list</p>}
           {productList.map((product: Product, index: number) => (
             <Card
               key={index}

@@ -37,6 +37,9 @@ export default function ContactForm({ user }: { user: User }) {
 
   return (
     <div className="rounded border p-3 mb-2">
+      <h3 className="text-center mb-4">
+        <strong>Personal Information</strong>
+      </h3>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}

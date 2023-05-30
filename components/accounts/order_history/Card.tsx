@@ -4,9 +4,11 @@ import { useEffect, useState } from "react";
 import Modal from "./Modal";
 import axios from "axios";
 
+import { Order } from "@/types/Order";
+
 export default function Card(props: any) {
-  const [modalShow, setModalShow] = useState(false);
-  const [orders, setOrders] = useState<Record<string, any>[]>([]);
+  const [modalShow, setModalShow] = useState<boolean>(false);
+  const [orders, setOrders] = useState<Order[]>([]);
   const {
     user_id,
     order_id,

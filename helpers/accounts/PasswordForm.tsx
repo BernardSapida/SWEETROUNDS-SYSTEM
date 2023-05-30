@@ -31,7 +31,7 @@ export const validationSchema = Yup.object({
     }),
 });
 
-const validPassword = (value: string) => {
+export const validPassword = (value: string) => {
   const validationMessage = {
     uppercase: "Password should have atleast one uppercase letter",
     lowercase: "Password should have atleast one lowercase letter",

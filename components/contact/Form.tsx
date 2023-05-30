@@ -1,105 +1,110 @@
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import FloatingLabel from "react-bootstrap/FloatingLabel";
+import { Formik } from "formik";
+import { useState } from "react";
 
+import { BsFillSendFill } from "react-icons/bs";
+import Button from "react-bootstrap/Button";
+import { Spinner } from "react-bootstrap";
+import Form from "react-bootstrap/Form";
+
+import TextArea from "@/components/form/TextArea";
+import Field from "@/components/form/InputField";
+
+import { initialValues, validationSchema } from "@/helpers/contact/Form";
 import { sendMessage } from "@/helpers/contact/Methods";
+
+import { Contact } from "@/types/Contact";
+
 import { Alert } from "@/utils/alert/swal";
-import { useRef } from "react";
 
 export default function ContactForm() {
-  const name = useRef<HTMLInputElement>(null);
-  const email = useRef<HTMLInputElement>(null);
-  const subject = useRef<HTMLInputElement>(null);
-  const message = useRef<HTMLTextAreaElement>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const handleSubmit = async (event: any) => {
-    event.preventDefault();
+  const handleSubmit = async (
+    values: Contact,
+    { resetForm }: { resetForm: any }
+  ) => {
+    setLoading(true);
+    const { name, email, subject, message } = values;
+    const response = await sendMessage(name, email, subject, message);
 
-    if (notEmptyInputs()) {
-      const response = await sendMessage(
-        name.current?.value,
-        email.current?.value,
-        subject.current?.value,
-        message.current?.value
+    if (response.success) {
+      resetForm();
+      Alert(
+        "success",
+        "Message Sent",
+        "Your message successfuly sent, we'll get back to you soon!"
       );
-
-      if (response.success) {
-        resetForm();
-        Alert(
-          "success",
-          "Message Sent",
-          "Your message successfuly sent, we'll get back to you soon!"
-        );
-      }
     }
-  };
-
-  const notEmptyInputs = () => {
-    return (
-      name.current?.value != "" &&
-      email.current?.value != "" &&
-      subject.current?.value != "" &&
-      message.current?.value != ""
-    );
-  };
-
-  const resetForm = () => {
-    const form = document.getElementById("contactForm") as HTMLFormElement;
-    form.reset();
+    setLoading(false);
   };
 
   return (
     <>
-      <Form onSubmit={handleSubmit} id="contactForm">
-        <div className="d-flex justify-content-between gap-3">
-          <FloatingLabel className="mb-3 w-100" label="Fullname">
-            <Form.Control
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+      >
+        {({ handleSubmit, handleChange, values }) => (
+          <Form onSubmit={handleSubmit} id="contactForm">
+            <div className="d-flex justify-content-between gap-3">
+              <Field
+                type="text"
+                name="name"
+                label="Name"
+                handleChange={handleChange}
+                value={values.name}
+                loading={loading}
+              />
+              <Field
+                type="text"
+                name="email"
+                label="Email"
+                handleChange={handleChange}
+                value={values.email}
+                loading={loading}
+              />
+            </div>
+            <Field
               type="text"
-              placeholder="Fullname"
-              ref={name}
-              required
+              name="subject"
+              label="Subject"
+              handleChange={handleChange}
+              value={values.subject}
+              loading={loading}
             />
-          </FloatingLabel>
-          <FloatingLabel className="mb-3 w-100" label="Email">
-            <Form.Control
-              type="email"
-              placeholder="Email"
-              ref={email}
-              autoComplete="username"
-              required
+            <TextArea
+              as="textarea"
+              name="message"
+              label="Message"
+              handleChange={handleChange}
+              value={values.message}
+              loading={loading}
             />
-          </FloatingLabel>
-        </div>
-        <FloatingLabel className="mb-3" label="Subject">
-          <Form.Control
-            type="text"
-            placeholder="Subject"
-            ref={subject}
-            required
-          />
-        </FloatingLabel>
-        <FloatingLabel className="mb-3" label="Message">
-          <Form.Control
-            as="textarea"
-            placeholder="Leave a comment here"
-            style={{ height: "150px" }}
-            ref={message}
-            required
-          />
-        </FloatingLabel>
-        <Button
-          type="submit"
-          className="d-block ms-auto"
-          style={{
-            backgroundImage:
-              "linear-gradient(45deg, rgb(253, 126, 20) 0%, rgb(250, 82, 82) 100%)",
-            border: "none",
-            fontWeight: 500,
-          }}
-        >
-          Send message
-        </Button>
-      </Form>
+            <Button
+              type="submit"
+              className="d-block ms-auto"
+              variant="primary"
+              disabled={loading}
+            >
+              <BsFillSendFill className="mb-1" />
+              {!loading && " Send message"}
+              {loading && (
+                <>
+                  <Spinner
+                    as="span"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                  />
+                  &nbsp;
+                  <span> Message sending...</span>
+                </>
+              )}
+            </Button>
+          </Form>
+        )}
+      </Formik>
     </>
   );
 }

@@ -1,19 +1,30 @@
+import { Dispatch, SetStateAction, useState } from "react";
+
 import Button from "react-bootstrap/Button";
 import Table from "./Table";
 
-import { useState } from "react";
+import Modal from "@/components/cart/Modal";
 
-import Modal from "./Modal";
+import { Cart } from "@/types/Cart";
 
-export default function Items(props: any) {
-  const [modalShow, setModalShow] = useState(false);
-  const { cart_items, setItems, note, setNote } = props;
+export default function Items({
+  cart_items,
+  setItems,
+  note,
+  setNote,
+}: {
+  cart_items: Cart[];
+  setItems: Dispatch<SetStateAction<Cart[]>>;
+  setNote: Dispatch<SetStateAction<string>>;
+  note: string;
+}) {
+  const [modalShow, setModalShow] = useState<boolean>(false);
 
   return (
     <>
       <Modal
         show={modalShow}
-        onHide={() => setModalShow(false)}
+        setModalShow={setModalShow}
         note={note}
         setNote={setNote}
       />

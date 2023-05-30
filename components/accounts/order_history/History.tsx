@@ -25,20 +25,26 @@ export default function OrderHistory({ user }: { user: User }) {
         role="tabpanel"
         aria-labelledby="list-home-list"
       >
-        <div style={{ maxHeight: 500, overflowY: "scroll" }}>
-          {orders.map((order: Order, index: number) => (
-            <Card
-              key={index}
-              user_id={user.id}
-              order_id={order.order_id}
-              order_number={order.order_number}
-              date={order.created_at}
-              order_status={order.order_status}
-              payment_status={order.payment_status}
-              quantity={order.quantity}
-              total={order.total}
-            />
-          ))}
+        <div className="rounded border p-3 mb-2 text-center">
+          <h3 className="text-center mb-4">
+            <strong>Order History</strong>
+          </h3>
+          {orders.length == 0 && <p>No order history</p>}
+          <div style={{ maxHeight: 500, overflowY: "scroll" }}>
+            {orders.map((order: Order, index: number) => (
+              <Card
+                key={index}
+                user_id={user.id}
+                order_id={order.order_id}
+                order_number={order.order_number}
+                date={order.created_at}
+                order_status={order.order_status}
+                payment_status={order.payment_status}
+                quantity={order.quantity}
+                total={order.total}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </>

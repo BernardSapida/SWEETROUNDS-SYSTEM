@@ -1,22 +1,38 @@
-import { useState, useEffect } from "react";
-import Button from "react-bootstrap/Button";
-import { Alert } from "@/utils/alert/swal";
+import { useState, useEffect, SetStateAction, Dispatch } from "react";
 import Link from "next/link";
-import axios from "axios";
 
-interface UserInformation {
-  firstname: string;
-  lastname: string;
-  address_line_1: string;
-  address_line_2: string;
-  city: string;
-  contact: string;
-}
+import { BsCartFill } from "react-icons/bs";
+import Button from "react-bootstrap/Button";
 
-export default function Summary(props: any) {
-  const { cart_items, settings, note, user, setItems } = props;
-  const { tax, shipping_fee, discount } = settings;
-  const [donutTotal, setDonutTotal] = useState(0);
+import {
+  createCustomerOrder,
+  createOrderItem,
+  deleteCartItems,
+  readUserInformation,
+} from "@/helpers/cart/Methods";
+
+import { UserInformation } from "@/types/UserInformation";
+import { Setting } from "@/types/Setting";
+import { User } from "@/types/User";
+
+import { Alert } from "@/utils/alert/swal";
+import { Cart } from "@/types/Cart";
+
+export default function Summary({
+  cart_items,
+  setting,
+  note,
+  user,
+  setItems,
+}: {
+  cart_items: Cart[];
+  setting: Setting;
+  note: string;
+  user: User;
+  setItems: Dispatch<SetStateAction<Cart[]>>;
+}) {
+  const { tax, shipping_fee, discount } = setting;
+  const [donutTotal, setDonutTotal] = useState<number>(0);
   const [userInformation, setUserInformation] = useState<UserInformation>({
     firstname: "",
     lastname: "",
@@ -24,20 +40,14 @@ export default function Summary(props: any) {
     address_line_2: "",
     city: "",
     contact: "",
-  })!;
+  });
   const { firstname, lastname, address_line_1, address_line_2, city, contact } =
     userInformation;
 
   useEffect(() => {
     const fetchUserInformation = async () => {
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_URL}/api/v1/user_informations/read`,
-        {
-          user_id: user.id,
-        }
-      );
-
-      setUserInformation(response.data.data);
+      const response = await readUserInformation(user.id);
+      setUserInformation(response.data);
     };
 
     const computedDonutTotal = computeDonutTotal(cart_items);
@@ -46,8 +56,10 @@ export default function Summary(props: any) {
     fetchUserInformation();
   }, [cart_items, setUserInformation, user.id]);
 
-  const computeDonutTotal = (items: Record<string, any>[]) => {
+  const computeDonutTotal = (items: Cart[]) => {
     let total = 0;
+
+    console.log(items);
 
     items.filter((item) => (total += item.cart_quantity * item.price));
 
@@ -69,6 +81,7 @@ export default function Summary(props: any) {
       );
       const response = await createOrder();
       const order_id = response.order_id;
+
       createOrderItems(order_id);
       resetCart();
     }
@@ -78,47 +91,21 @@ export default function Summary(props: any) {
     setItems([]);
   };
 
-  const deleteDonutFromCart = async (cart_id: number) => {
-    const response = await axios.post(
-      `${process.env.NEXT_PUBLIC_URL}/api/v1/cart_items/delete`,
-      { cart_id: cart_id }
-    );
-  };
-
   const createOrder = async () => {
-    const response = await axios.post(
-      `${process.env.NEXT_PUBLIC_URL}/api/v1/orders/create`,
-      {
-        firstname: firstname,
-        lastname: lastname,
-        address_line_1: address_line_1,
-        address_line_2: address_line_2,
-        city: city,
-        contact: contact,
-        note: note,
-        tax: tax,
-        shipping_fee: shipping_fee,
-        discount: discount,
-        user_id: user.id,
-      }
+    const response = await createCustomerOrder(
+      userInformation,
+      setting,
+      note,
+      user.id
     );
 
-    return response.data;
+    return response;
   };
 
-  // order_items (quantity, order_id, product_id)
   const createOrderItems = (order_id: number) => {
-    cart_items.filter(async (item: Record<string, any>) => {
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_URL}/api/v1/order_items/create`,
-        {
-          quantity: item.cart_quantity,
-          product_id: item.product_id,
-          order_id: order_id,
-        }
-      );
-
-      deleteDonutFromCart(item.cart_id);
+    cart_items.filter(async (item: Cart) => {
+      await createOrderItem(item.cart_quantity, item.product_id, order_id);
+      deleteCartItems(item.cart_id);
     });
   };
 
@@ -180,6 +167,7 @@ export default function Summary(props: any) {
         <div className="mb-3">
           <p className="fs-6 lh-1 mb-2 text-secondary">{`${firstname} ${lastname}`}</p>
           <p className="fs-6 lh-1 mb-2 text-secondary">{address_line_1}</p>
+          <p className="fs-6 lh-1 mb-2 text-secondary">{contact}</p>
         </div>
         <div className="mb-3">
           <p className="fs-6 lh-1 mb-2 text-secondary">{address_line_2}</p>
@@ -187,7 +175,7 @@ export default function Summary(props: any) {
         </div>
         <div className="d-grid">
           <Button variant="primary" onClick={placeOrder}>
-            Place Order
+            <BsCartFill className="mb-2" /> Place Order
           </Button>
         </div>
       </div>

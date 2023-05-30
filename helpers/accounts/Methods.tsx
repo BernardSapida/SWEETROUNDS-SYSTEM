@@ -1,5 +1,7 @@
 import axios from "axios";
 
+import { UserInformation } from "@/types/UserInformation";
+
 export const fetchOrderHistory = async (user_id: number) => {
   const response = await axios.post(
     `${process.env.NEXT_PUBLIC_URL}/api/v1/orders/user_order_history`,
@@ -13,7 +15,7 @@ export const fetchOrderHistory = async (user_id: number) => {
 
 export const updateUserInfo = async (
   user_id: number,
-  data: Record<string, any>
+  data: UserInformation
 ) => {
   const response = await axios.post(
     `${process.env.NEXT_PUBLIC_URL}/api/v1/user_informations/update`,

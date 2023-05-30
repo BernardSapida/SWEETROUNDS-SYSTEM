@@ -7,10 +7,10 @@ export const getInitialValues = (user: User) => {
     firstname: user.firstname,
     lastname: user.lastname,
     email: user.email,
-    address_line_1: user.address_line_1,
-    address_line_2: user.address_line_2,
-    city: user.city,
-    contact: user.contact,
+    address_line_1: user.address_line_1 || "",
+    address_line_2: user.address_line_2 || "",
+    city: user.city || "",
+    contact: user.contact || "",
   };
 };
 

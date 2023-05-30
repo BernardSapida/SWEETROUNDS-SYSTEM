@@ -1,34 +1,27 @@
+import Image from "next/image";
+
 import DataTable from "react-data-table-component";
 import Spinner from "react-bootstrap/Spinner";
 
-import { useState, useEffect } from "react";
-import Image from "next/image";
+import { Product } from "@/types/Product";
 
-import { Order } from "@/types/Order";
-
-export default function Table({ orders }: { orders: Order[] }) {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setLoading(false);
-  }, []);
-
+export default function Table({ orders }: { orders: Product[] }) {
   const table_columns = [
     {
       name: "DONUT NAME",
-      selector: (row: Record<any, any>) => row.name,
+      selector: (row: Product) => row.name,
       sortable: true,
     },
     {
       name: "FLAVOR",
-      selector: (row: Record<any, any>) => row.flavor,
+      selector: (row: Product) => row.flavor,
       sortable: true,
     },
     {
       name: "IMAGE",
-      selector: (row: Record<any, any>) => row.image,
+      selector: (row: Product) => row.image,
       sortable: true,
-      cell: (row: Record<any, any>) => (
+      cell: (row: Product) => (
         <Image
           src={`/donuts/${row["image"]}`}
           height={80}
@@ -40,12 +33,12 @@ export default function Table({ orders }: { orders: Order[] }) {
     },
     {
       name: "QUANTITY",
-      selector: (row: Record<any, any>) => row.quantity,
+      selector: (row: Product) => row.quantity,
       sortable: true,
     },
     {
       name: "PRICE",
-      selector: (row: Record<any, any>) => row.price,
+      selector: (row: Product) => row.price,
       sortable: true,
     },
   ];
@@ -71,13 +64,11 @@ export default function Table({ orders }: { orders: Order[] }) {
         }}
         columns={table_columns}
         data={orders}
-        defaultSortFieldId={1}
         pagination
         persistTableHead
         responsive={true}
         striped={true}
         highlightOnHover={true}
-        progressPending={loading}
         paginationRowsPerPageOptions={[10]}
         progressComponent={
           <span className="d-flex align-items-center">

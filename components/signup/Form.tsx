@@ -1,125 +1,115 @@
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import { Formik } from "formik";
+import { useState } from "react";
+import axios from "axios";
+
 import FloatingLabel from "react-bootstrap/FloatingLabel";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/router";
-import Swal from "sweetalert2";
-import { useRef } from "react";
-import Link from "next/link";
-import axios from "axios";
+
+import Field from "@/components/form/InputField";
+
+import { initialValues, validationSchema } from "@/helpers/signup/Form";
+
 import { Alert } from "@/utils/alert/swal";
+import { UserCredential } from "@/types/UserCredential";
 
 export default function SigninForm() {
-  const firstname = useRef<HTMLInputElement>(null);
-  const lastname = useRef<HTMLInputElement>(null);
-  const email = useRef<HTMLInputElement>(null);
-  const password = useRef<HTMLInputElement>(null);
-  const confirmPassword = useRef<HTMLInputElement>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const handleSignin = async (event: any) => {
-    event.preventDefault();
-
-    if (notEmptyInputs()) {
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_URL}/api/v1/users/create`,
-        {
-          firstname: firstname.current?.value,
-          lastname: lastname.current?.value,
-          email: email.current?.value,
-          password: password.current?.value,
-          confirmPassword: confirmPassword.current?.value,
-        }
-      );
-
-      if (response.data.success) {
-        resetForm();
-        Alert("error", "Signup Successful", "Account successfully created!");
-      } else {
-        Alert("error", "Invalid Input", response.data.message);
+  const handleSubmit = async (
+    values: UserCredential,
+    { resetForm }: { resetForm: any }
+  ) => {
+    setLoading(true);
+    const { firstname, lastname, email, password, confirmPassword } = values;
+    const response = await axios.post(
+      `${process.env.NEXT_PUBLIC_URL}/api/v1/users/create`,
+      {
+        firstname: firstname,
+        lastname: lastname,
+        email: email,
+        password: password,
+        confirmPassword: confirmPassword,
       }
-    }
-  };
-
-  const notEmptyInputs = () => {
-    return (
-      firstname.current?.value != "" &&
-      lastname.current?.value != "" &&
-      email.current?.value != "" &&
-      password.current?.value != "" &&
-      confirmPassword.current?.value != ""
     );
-  };
 
-  const resetForm = () => {
-    const form = document.getElementById("signupForm") as HTMLFormElement;
-    form.reset();
+    if (response.data.success) {
+      resetForm();
+      Alert("success", "Signup Successful", "Account successfully created!");
+    } else Alert("error", "Invalid Input", response.data.message);
+
+    setLoading(false);
   };
 
   return (
-    <>
-      <Form onSubmit={handleSignin} id="signupForm">
-        <div className="d-flex justify-content-between gap-3">
-          <FloatingLabel className="mb-3 w-100" label="Firstname">
-            <Form.Control
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={handleSubmit}
+    >
+      {({ handleSubmit, handleChange, values }) => (
+        <Form onSubmit={handleSubmit} id="signupForm">
+          <div className="d-flex justify-content-between gap-3">
+            <Field
               type="text"
-              placeholder="Firstname"
-              ref={firstname}
-              required
+              name="firstname"
+              label="Firstname"
+              handleChange={handleChange}
+              value={values.firstname}
+              loading={loading}
             />
-          </FloatingLabel>
-          <FloatingLabel className="mb-3 w-100" label="Lastname">
-            <Form.Control
+            <Field
               type="text"
-              placeholder="Lastname"
-              ref={lastname}
-              required
+              name="lastname"
+              label="Lastname"
+              handleChange={handleChange}
+              value={values.lastname}
+              loading={loading}
             />
-          </FloatingLabel>
-        </div>
-        <FloatingLabel className="mb-3" label="Email Address">
-          <Form.Control
-            type="email"
-            placeholder="Email Address"
-            ref={email}
-            autoComplete="username"
-            required
+          </div>
+          <Field
+            type="text"
+            name="email"
+            label="Email Address"
+            handleChange={handleChange}
+            value={values.email}
+            loading={loading}
           />
-        </FloatingLabel>
-        <div className="d-flex justify-content-between gap-3">
-          <FloatingLabel className="mb-3 w-100" label="Password">
-            <Form.Control
+          <div className="d-flex justify-content-between gap-3">
+            <Field
               type="password"
-              placeholder="Password"
-              ref={password}
-              autoComplete="current-password"
-              required
+              name="password"
+              label="Password"
+              handleChange={handleChange}
+              value={values.password}
+              loading={loading}
             />
-          </FloatingLabel>
-          <FloatingLabel className="mb-3 w-100" label="Confirm Password">
-            <Form.Control
+            <Field
               type="password"
-              placeholder="Password"
-              ref={confirmPassword}
-              autoComplete="current-password"
-              required
+              name="confirmPassword"
+              label="Confirm Password"
+              handleChange={handleChange}
+              value={values.confirmPassword}
+              loading={loading}
             />
-          </FloatingLabel>
-        </div>
-        <div className="d-grid gap-2">
-          <Button
-            type="submit"
-            style={{
-              backgroundImage:
-                "linear-gradient(45deg, rgb(253, 126, 20) 0%, rgb(250, 82, 82) 100%)",
-              border: "none",
-              fontWeight: 500,
-            }}
-          >
-            Sign Up
-          </Button>
-        </div>
-      </Form>
-    </>
+          </div>
+          <div className="d-grid gap-2">
+            <Button
+              type="submit"
+              style={{
+                backgroundImage:
+                  "linear-gradient(45deg, rgb(253, 126, 20) 0%, rgb(250, 82, 82) 100%)",
+                border: "none",
+                fontWeight: 500,
+              }}
+            >
+              Sign Up
+            </Button>
+          </div>
+        </Form>
+      )}
+    </Formik>
   );
 }

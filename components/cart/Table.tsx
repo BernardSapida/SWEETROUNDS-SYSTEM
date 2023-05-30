@@ -1,14 +1,14 @@
 import DataTable from "react-data-table-component";
-import Spinner from "react-bootstrap/Spinner";
-import { IoMdAdd } from "react-icons/io";
-import { FiMinus } from "react-icons/Fi";
 import { BsFillTrashFill } from "react-icons/bs";
+import Spinner from "react-bootstrap/Spinner";
+import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { Button } from "react-bootstrap";
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import axios from "axios";
+
+import { Cart } from "@/types/Cart";
 
 export default function Table(props: any) {
   const { items, setItems } = props;
@@ -18,10 +18,10 @@ export default function Table(props: any) {
     setLoading(false);
   }, []);
 
-  const updateDonutQuantity = (row: Record<string, any>, event: any) => {
+  const updateDonutQuantity = (row: Cart, event: any) => {
     const quantity = Number(event.target.value);
 
-    if (quantity <= 1) event.target.value = 1;
+    if (quantity <= 0) event.target.value = 1;
     else {
       row.cart_quantity = quantity;
 
@@ -30,10 +30,10 @@ export default function Table(props: any) {
     }
   };
 
-  const updateItems = (row: Record<string, any>) => {
+  const updateItems = (row: Cart) => {
     const updatedCart = [...items];
 
-    updatedCart.map((item: Record<string, any>) => {
+    updatedCart.map((item: Cart) => {
       if (item.cart_id == row.cart_id) {
         item.cart_quantity = row.cart_quantity;
       }
@@ -58,7 +58,7 @@ export default function Table(props: any) {
 
   const removeToCart = (cart_id: number) => {
     const updatedCart = [
-      ...items.filter((item: Record<string, any>) => {
+      ...items.filter((item: Cart) => {
         if (item.cart_id != cart_id) {
           return item;
         }
@@ -71,10 +71,10 @@ export default function Table(props: any) {
   const table_columns = [
     {
       name: "Donut",
-      selector: (row: Record<any, any>) => row.image,
-      cell: (row: Record<any, any>) => (
+      selector: (row: Cart) => row.image,
+      cell: (row: Cart) => (
         <Image
-          src={`/donuts/${row["image"]}`}
+          src={`/donuts/${row.image}`}
           height={80}
           width={80}
           alt="Donut Image"
@@ -84,12 +84,12 @@ export default function Table(props: any) {
     },
     {
       name: "Name",
-      selector: (row: Record<any, any>) => row.name,
+      selector: (row: Cart) => row.name,
     },
     {
       name: "Quantity",
-      selector: (row: Record<any, any>) => row.cart_quantity,
-      cell: (row: Record<any, any>) => (
+      selector: (row: Cart) => row.cart_quantity,
+      cell: (row: Cart) => (
         <div>
           {/* <Button variant="dark" size="sm">
             <FiMinus />
@@ -111,15 +111,15 @@ export default function Table(props: any) {
     },
     {
       name: "Price",
-      selector: (row: Record<any, any>) => row.price,
+      selector: (row: Cart) => row.price,
     },
     {
       name: "Total",
-      selector: (row: Record<any, any>) => row.price * row.cart_quantity,
+      selector: (row: Cart) => row.price * row.cart_quantity,
     },
     {
       name: "",
-      cell: (row: Record<any, any>) => (
+      cell: (row: Cart) => (
         <div>
           <Button
             variant="danger"

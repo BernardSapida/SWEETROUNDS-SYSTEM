@@ -10,7 +10,7 @@ export default function Signup() {
           <strong>Create an account!</strong>
         </h1>
         <p className="text-center">
-          Already have an account? <Link href="/signup">Sign in</Link>
+          Already have an account? <Link href="/auth/signin">Sign in</Link>
         </p>
       </div>
       <div className="bg-white my-4 rounded">

@@ -1,11 +1,11 @@
+import Image from "next/image";
+import axios from "axios";
+
+import { BsCartPlusFill, BsCartCheckFill } from "react-icons/bs";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import Badge from "react-bootstrap/Badge";
 import Card from "react-bootstrap/Card";
 
-import Image from "next/image";
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
-import { BsCartPlusFill, BsCartCheckFill } from "react-icons/bs";
-
-import axios from "axios";
 import { Product } from "@/types/Product";
 
 export default function DonutCard({
