@@ -39,72 +39,65 @@ export default function ContactForm() {
   };
 
   return (
-    <>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={handleSubmit}
-      >
-        {({ handleSubmit, handleChange, values }) => (
-          <Form onSubmit={handleSubmit} id="contactForm">
-            <div className="d-flex justify-content-between gap-3">
-              <Field
-                type="text"
-                name="name"
-                label="Name"
-                handleChange={handleChange}
-                value={values.name}
-                loading={loading}
-              />
-              <Field
-                type="text"
-                name="email"
-                label="Email"
-                handleChange={handleChange}
-                value={values.email}
-                loading={loading}
-              />
-            </div>
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={handleSubmit}
+    >
+      {({ handleSubmit, handleChange, values }) => (
+        <Form onSubmit={handleSubmit} id="contactForm">
+          <div className="d-flex justify-content-between gap-3">
             <Field
               type="text"
-              name="subject"
-              label="Subject"
+              name="name"
+              label="Name"
               handleChange={handleChange}
-              value={values.subject}
+              value={values.name}
               loading={loading}
             />
-            <TextArea
-              as="textarea"
-              name="message"
-              label="Message"
+            <Field
+              type="text"
+              name="email"
+              label="Email"
               handleChange={handleChange}
-              value={values.message}
+              value={values.email}
               loading={loading}
             />
-            <Button
-              type="submit"
-              className="d-block ms-auto"
-              variant="primary"
-              disabled={loading}
-            >
-              <BsFillSendFill className="mb-1" />
-              {!loading && " Send message"}
-              {loading && (
-                <>
-                  <Spinner
-                    as="span"
-                    size="sm"
-                    role="status"
-                    aria-hidden="true"
-                  />
-                  &nbsp;
-                  <span> Message sending...</span>
-                </>
-              )}
-            </Button>
-          </Form>
-        )}
-      </Formik>
-    </>
+          </div>
+          <Field
+            type="text"
+            name="subject"
+            label="Subject"
+            handleChange={handleChange}
+            value={values.subject}
+            loading={loading}
+          />
+          <TextArea
+            as="textarea"
+            name="message"
+            label="Message"
+            handleChange={handleChange}
+            value={values.message}
+            loading={loading}
+          />
+          <Button
+            type="submit"
+            className="d-block ms-auto"
+            variant="primary"
+            disabled={loading}
+          >
+            <BsFillSendFill className="mb-1" />
+            {!loading && " Send message"}
+            {loading && (
+              <>
+                <Spinner as="span" size="sm" role="status" aria-hidden="true" />
+                &nbsp;
+                <span> Message sending...</span>
+              </>
+            )}
+          </Button>
+        </Form>
+      )}
+    </Formik>
   );
 }

@@ -2,7 +2,6 @@ import { Formik } from "formik";
 import { useState } from "react";
 import axios from "axios";
 
-import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
