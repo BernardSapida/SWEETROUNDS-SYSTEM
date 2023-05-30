@@ -58,11 +58,7 @@ export default function Summary({
 
   const computeDonutTotal = (items: Cart[]) => {
     let total = 0;
-
-    console.log(items);
-
     items.filter((item) => (total += item.cart_quantity * item.price));
-
     return total;
   };
 
