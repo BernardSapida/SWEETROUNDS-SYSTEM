@@ -4,10 +4,14 @@ import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
-import History from "@/components/accounts/order_history/History";
 import ProfileInformationForm from "@/components/accounts/profile_information/Form";
-import PasswordForm from "@/components/accounts/password/Form";
 import AllFavorites from "@/components/accounts/favorites/AllFavorites";
+import History from "@/components/accounts/order_history/History";
+import PasswordForm from "@/components/accounts/password/Form";
+import { User } from "@/types/User";
+
+import { fetchFavoriteDonut } from "@/helpers/accounts/Methods";
+import { Product } from "@/types/Product";
 
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext
@@ -25,9 +29,12 @@ export const getServerSideProps: GetServerSideProps = async (
       };
     }
 
+    const response = await fetchFavoriteDonut(session.user.id);
+
     return {
       props: {
         user: session.user,
+        favoriteDonuts: response.data,
       },
     };
   } catch (error) {
@@ -39,8 +46,15 @@ export const getServerSideProps: GetServerSideProps = async (
   }
 };
 
-export default function AccountPage({ user }: { user: Record<string, any> }) {
+export default function AccountPage({
+  user,
+  favoriteDonuts,
+}: {
+  user: User;
+  favoriteDonuts: Product[];
+}) {
   const router = useRouter();
+
   return (
     <>
       <Head>
@@ -88,7 +102,9 @@ export default function AccountPage({ user }: { user: Record<string, any> }) {
           {router.query["page"] == "profile_information" && (
             <ProfileInformationForm user={user} />
           )}
-          {router.query["page"] == "favorites" && <AllFavorites user={user} />}
+          {router.query["page"] == "favorites" && (
+            <AllFavorites user={user} favoriteDonuts={favoriteDonuts} />
+          )}
           {router.query["page"] == "password" && <PasswordForm user={user} />}
         </div>
       </div>

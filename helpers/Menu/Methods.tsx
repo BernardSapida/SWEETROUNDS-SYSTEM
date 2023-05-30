@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const fetchProductList = async (user_id: string) => {
+export const fetchProductList = async (user_id: number) => {
   const response = await axios.post(
     `${process.env.NEXT_PUBLIC_URL}/api/v1/products/user_product_list`,
     {
@@ -12,7 +12,7 @@ export const fetchProductList = async (user_id: string) => {
 };
 
 export const fetchProductListByKeyword = async (
-  user_id: string,
+  user_id: number,
   keyword: string
 ) => {
   const response = await axios.post(

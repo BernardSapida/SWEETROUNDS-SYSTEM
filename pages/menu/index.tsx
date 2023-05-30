@@ -1,12 +1,16 @@
-import Head from "next/head";
-import { getSession } from "next-auth/react";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
-import axios from "axios";
+import { getSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
+import Head from "next/head";
 
 import Card from "@/components/menu/Card";
-import { fetchProductList, fetchProductListByKeyword } from "@/helpers/menu";
+import { Product } from "@/types/Product";
+import { User } from "@/types/User";
+import {
+  fetchProductList,
+  fetchProductListByKeyword,
+} from "@/helpers/Menu/Methods";
 
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext
@@ -25,12 +29,11 @@ export const getServerSideProps: GetServerSideProps = async (
     }
 
     const response = await fetchProductList(session.user.id);
-    const products = response.data;
 
     return {
       props: {
         user: session.user,
-        products,
+        products: response.data,
       },
     };
   } catch (error) {
@@ -46,11 +49,10 @@ export default function AccountPage({
   user,
   products,
 }: {
-  user: Record<string, any>;
-  products: Record<string, any>[];
+  user: User;
+  products: Product[];
 }) {
-  const [productList, setProductList] =
-    useState<Record<string, any>[]>(products);
+  const [productList, setProductList] = useState<Product[]>(products);
   const [keyword, setKeyword] = useState("");
 
   useEffect(() => {
@@ -72,7 +74,7 @@ export default function AccountPage({
   const updateCart = (id: number, value: number) => {
     const updatedList = [...productList];
 
-    updatedList?.map((product: Record<string, any>) => {
+    updatedList?.map((product: Product) => {
       if (product.product_id == id) product.in_cart = value;
     });
 
@@ -82,7 +84,7 @@ export default function AccountPage({
   const updateFavorites = (id: number, value: number) => {
     const updatedList = [...productList];
 
-    updatedList?.map((product: Record<string, any>) => {
+    updatedList?.map((product: Product) => {
       if (product.product_id == id) product.in_favorite = value;
     });
 
@@ -111,18 +113,10 @@ export default function AccountPage({
       </Form.Group>
       <div className="d-flex justify-content-center flex-wrap gap-3">
         {productList.length == 0 && <h3 className="mt-3">No donut found!</h3>}
-        {productList.map((product: Record<string, any>, index: number) => (
+        {productList.map((product: Product, index: number) => (
           <Card
             key={index}
-            id={product.product_id}
-            image={product.image}
-            name={product.name}
-            flavor={product.flavor}
-            price={product.price}
-            in_cart={product.in_cart}
-            in_favorite={product.in_favorite}
-            favorite_id={product.favorite_id}
-            cart_id={product.cart_id}
+            product={product}
             updateCart={updateCart}
             updateFavorites={updateFavorites}
             user_id={user.id}

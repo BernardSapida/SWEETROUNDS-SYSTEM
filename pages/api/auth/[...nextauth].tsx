@@ -11,13 +11,14 @@ import { JWT } from "next-auth/jwt";
 declare module "next-auth" {
   interface Session extends DefaultSession {
     user: {
-      id: string;
+      id: number;
       email: string;
-      fullname: string;
-      password: string;
-      auth_provider: string;
-      account_status: string;
-      online_status: string;
+      firstname: string;
+      lastname: string;
+      address_line_1: string;
+      address_line_2: string;
+      city: string;
+      contact: string;
     } & DefaultSession["user"];
   }
 }
@@ -26,45 +27,15 @@ declare module "next-auth/jwt" {
   interface JWT {
     id: string;
     email: string;
-    fullname: string;
-    password: string;
-    auth_provider: string;
-    account_status: string;
-    online_status: string;
+    firstname: string;
+    lastname: string;
+    address_line_1: string;
+    address_line_2: string;
+    city: string;
+    contact: string;
     data: any;
   }
 }
-
-// async function verifyAccount(profile: any, provider: string) {
-//   const res = await fetch(
-//     `${process.env.NEXTAUTH_URL}/api/check_account_in_database`,
-//     {
-//       method: "POST",
-//       body: JSON.stringify({
-//         name: profile.name,
-//         email: profile?.email,
-//         authProvider: provider,
-//       }),
-//       headers: { "Content-Type": "application/json" },
-//     }
-//   );
-
-//   const data = await res.json();
-//   if (!data.isFound) {
-//     const res = await fetch(
-//       `${process.env.NEXTAUTH_URL}/api/auth/create_account`,
-//       {
-//         method: "POST",
-//         body: JSON.stringify({
-//           fullname: profile.name,
-//           email: profile.email,
-//           authProvider: provider,
-//         }),
-//         headers: { "Content-Type": "application/json" },
-//       }
-//     );
-//   }
-// }
 
 export const authOptions: NextAuthOptions = {
   callbacks: {
@@ -84,11 +55,12 @@ export const authOptions: NextAuthOptions = {
       if (session) {
         session.user.id = user?.id;
         session.user.email = user?.email;
-        session.user.fullname = user?.fullname;
-        session.user.password = user?.password;
-        session.user.auth_provider = user?.auth_provider;
-        session.user.account_status = user?.account_status;
-        session.user.online_status = user?.online_status;
+        session.user.firstname = user?.firstname;
+        session.user.lastname = user?.lastname;
+        session.user.address_line_1 = user?.address_line_1;
+        session.user.address_line_2 = user?.address_line_2;
+        session.user.city = user?.city;
+        session.user.contact = user?.contact;
       }
 
       return session;
@@ -111,7 +83,7 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        const response = await axios.post(
+        const authResponse = await axios.post(
           `${process.env.NEXTAUTH_URL}/api/v1/users/authenticate`,
           {
             email: credentials?.email,
@@ -119,11 +91,18 @@ export const authOptions: NextAuthOptions = {
           }
         );
 
-        let user = response.data.data || null;
+        const user = authResponse.data.data || null;
 
-        if (!user) throw new Error(JSON.stringify(response.data));
+        if (!user) throw new Error(JSON.stringify(authResponse.data));
 
-        return user;
+        const userInfoResponse = await axios.post(
+          `${process.env.NEXTAUTH_URL}/api/v1/user_informations/read`,
+          { user_id: user.id }
+        );
+
+        const userInfo = userInfoResponse.data.data || null;
+
+        return { ...user, ...userInfo };
       },
     }),
     GitHubProvider({

@@ -10,7 +10,7 @@ import { useState, useEffect } from "react";
 
 import Items from "@/components/cart/Items";
 import Summary from "@/components/cart/Summary";
-import { fetchCart, fetchSetting } from "@/helpers/cart";
+import { fetchCart, fetchSetting } from "@/helpers/cart/Methods";
 
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext

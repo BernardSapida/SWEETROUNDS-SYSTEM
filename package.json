@@ -18,6 +18,7 @@
     "bootstrap": "^5.2.3",
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
+    "formik": "^2.4.0",
     "joi": "^17.9.1",
     "jsonwebtoken": "^9.0.0",
     "mongodb": "^4.15.0",
@@ -33,7 +34,8 @@
     "react-icons": "^4.8.0",
     "rundev": "^0.0.0",
     "sweetalert2": "^11.7.5",
-    "typescript": "5.0.4"
+    "typescript": "5.0.4",
+    "yup": "^1.2.0"
   },
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",

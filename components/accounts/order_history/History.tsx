@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import Card from "./Card";
-import { fetchOrderHistory } from "@/helpers/accounts";
 
-export default function OrderHistory(props: any) {
-  const [orders, setOrders] = useState<Record<string, any>[]>([]);
-  const { user } = props;
+import { fetchOrderHistory } from "@/helpers/accounts/Methods";
+import { Order } from "@/types/Order";
+import { User } from "@/types/User";
+import Card from "./Card";
+
+export default function OrderHistory({ user }: { user: User }) {
+  const [orders, setOrders] = useState<Order[]>([]);
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -24,7 +26,7 @@ export default function OrderHistory(props: any) {
         aria-labelledby="list-home-list"
       >
         <div style={{ maxHeight: 500, overflowY: "scroll" }}>
-          {orders.map((order: Record<string, any>, index: number) => (
+          {orders.map((order: Order, index: number) => (
             <Card
               key={index}
               user_id={user.id}

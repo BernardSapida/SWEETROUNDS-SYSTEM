@@ -1,78 +1,120 @@
-import Form from "react-bootstrap/Form";
+import Spinner from "react-bootstrap/Spinner";
 import Button from "react-bootstrap/Button";
-import FloatingLabel from "react-bootstrap/FloatingLabel";
+import Form from "react-bootstrap/Form";
 
-import Swal from "sweetalert2";
-import { useRef } from "react";
-import axios from "axios";
-import { updatePassword } from "@/helpers/accounts";
+import { useState } from "react";
+import { Formik } from "formik";
 
-export default function ContactForm(props: any) {
-  const { user } = props;
-  const password = useRef<HTMLInputElement>(null);
-  const confirmPassword = useRef<HTMLInputElement>(null);
+import { updatePassword } from "@/helpers/accounts/Methods";
+import { Password } from "@/types/Password";
+import { User } from "@/types/User";
 
-  const handleSubmit = async (event: any) => {
-    event.preventDefault();
+import Field from "@/components/form/InputField";
 
-    if (notEmptyInputs()) {
-      const response = await updatePassword(
-        user?.id,
-        password.current?.value,
-        confirmPassword.current?.value
-      );
+import {
+  initialValues,
+  validationSchema,
+} from "@/helpers/accounts/PasswordForm";
+import { Alert } from "@/utils/alert/swal";
 
-      if (response.success) {
-        resetForm();
-        Swal.fire({
-          icon: "success",
-          title: "Updated Successfully",
-          text: "Your password updated successfully",
-        });
-      } else {
-        Swal.fire({
-          icon: "error",
-          title: "Invalid Password",
-          text: response.message,
-        });
-      }
-    }
-  };
+export default function ContactForm({ user }: { user: User }) {
+  const [edit, setEdit] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const notEmptyInputs = () => {
-    return (
-      password.current?.value != "" && confirmPassword.current?.value != ""
+  const handleSubmit = async (
+    values: Password,
+    { resetForm }: { resetForm: any }
+  ) => {
+    setLoading(true);
+
+    const response = await updatePassword(
+      user.id,
+      values.password,
+      values.confirmPassword
     );
-  };
 
-  const resetForm = () => {
-    const form = document.getElementById("form") as HTMLFormElement;
-    form.reset();
+    if (response.success) {
+      Alert(
+        "success",
+        "Updated Successfully",
+        "Your password updated successfully"
+      );
+      resetForm();
+      setEdit(false);
+    } else {
+      Alert("error", "Invalid Password", response.message);
+    }
+
+    setLoading(false);
   };
 
   return (
     <div className="rounded border p-3 mb-2">
-      <Form onSubmit={handleSubmit} id="form">
-        <FloatingLabel className="mb-3 w-100" label="Password">
-          <Form.Control
-            type="password"
-            placeholder="Password"
-            ref={password}
-            required
-          />
-        </FloatingLabel>
-        <FloatingLabel className="mb-3 w-100" label="Confirm Password">
-          <Form.Control
-            type="password"
-            placeholder="Confirm Password"
-            ref={confirmPassword}
-            required
-          />
-        </FloatingLabel>
-        <Button type="submit" className="d-block ms-auto" variant="dark">
-          Update Password
-        </Button>
-      </Form>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+      >
+        {({ handleSubmit, handleChange, values, resetForm }) => (
+          <Form onSubmit={handleSubmit} id="form">
+            <Field
+              type="password"
+              name="password"
+              label="Password"
+              handleChange={handleChange}
+              value={values.password}
+              loading={!edit || loading}
+            />
+            <Field
+              type="password"
+              name="confirmPassword"
+              label="Confirm Password"
+              handleChange={handleChange}
+              value={values.confirmPassword}
+              loading={!edit || loading}
+            />
+            {!edit && (
+              <Button
+                className="d-block ms-auto"
+                variant="dark"
+                onClick={() => setEdit(true)}
+              >
+                Edit password
+              </Button>
+            )}
+            {edit && (
+              <div className="d-flex justify-content-end gap-1">
+                {!loading && (
+                  <Button
+                    variant="outline-dark"
+                    onClick={() => {
+                      setEdit(false);
+                      resetForm({ values: initialValues });
+                    }}
+                  >
+                    Cancel
+                  </Button>
+                )}
+                <Button type="submit" form="form" disabled={loading}>
+                  {!loading && "Update password"}
+                  {loading && (
+                    <>
+                      <Spinner
+                        as="span"
+                        size="sm"
+                        role="status"
+                        aria-hidden="true"
+                      />
+                      &nbsp;
+                      <span>Updating password...</span>
+                    </>
+                  )}
+                </Button>
+              </div>
+            )}
+          </Form>
+        )}
+      </Formik>
     </div>
   );
 }

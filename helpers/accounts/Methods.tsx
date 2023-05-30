@@ -11,17 +11,6 @@ export const fetchOrderHistory = async (user_id: number) => {
   return response.data;
 };
 
-export const fetchUserInfo = async (user_id: number) => {
-  const response = await axios.post(
-    `${process.env.NEXT_PUBLIC_URL}/api/v1/user_informations/read`,
-    {
-      user_id: user_id,
-    }
-  );
-
-  return response.data;
-};
-
 export const updateUserInfo = async (
   user_id: number,
   data: Record<string, any>
@@ -33,8 +22,8 @@ export const updateUserInfo = async (
       firstname: data.firstname,
       lastname: data.lastname,
       email: data.email,
-      address_line_1: data.addressLine1,
-      address_line_2: data.addressLine2,
+      address_line_1: data.address_line_1,
+      address_line_2: data.address_line_2,
       city: data.city,
       contact: data.contact,
     }
@@ -43,7 +32,7 @@ export const updateUserInfo = async (
   return response.data;
 };
 
-export const fetchFavoriteDonut = async (user_id: number) => {
+export const fetchFavoriteDonut = async (user_id: string) => {
   const response = await axios.post(
     `${process.env.NEXT_PUBLIC_URL}/api/v1/products/favorites`,
     {

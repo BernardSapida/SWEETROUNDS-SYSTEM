@@ -2,10 +2,9 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 
-import Swal from "sweetalert2";
+import { sendMessage } from "@/helpers/contact/Methods";
+import { Alert } from "@/utils/alert/swal";
 import { useRef } from "react";
-import axios from "axios";
-import { sendMessage } from "@/helpers/contact";
 
 export default function ContactForm() {
   const name = useRef<HTMLInputElement>(null);
@@ -26,12 +25,11 @@ export default function ContactForm() {
 
       if (response.success) {
         resetForm();
-
-        Swal.fire({
-          icon: "success",
-          title: "Message Sent",
-          text: "Your message successfuly sent, we'll get back to you soon!",
-        });
+        Alert(
+          "success",
+          "Message Sent",
+          "Your message successfuly sent, we'll get back to you soon!"
+        );
       }
     }
   };

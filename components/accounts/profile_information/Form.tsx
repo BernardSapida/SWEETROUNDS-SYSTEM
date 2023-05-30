@@ -1,147 +1,153 @@
-import Form from "react-bootstrap/Form";
+import Spinner from "react-bootstrap/Spinner";
 import Button from "react-bootstrap/Button";
-import FloatingLabel from "react-bootstrap/FloatingLabel";
+import Form from "react-bootstrap/Form";
 
-import Swal from "sweetalert2";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { fetchUserInfo, updateUserInfo } from "@/helpers/accounts";
+import { useState } from "react";
+import { Formik } from "formik";
 
-export default function ContactForm(props: any) {
-  const { user } = props;
-  const [firstname, setFirstname] = useState();
-  const [lastname, setLastname] = useState();
-  const [email, setEmail] = useState();
-  const [addressLine1, setAddressLine1] = useState();
-  const [addressLine2, setAddressLine2] = useState();
-  const [city, setCity] = useState();
-  const [contact, setContact] = useState();
+import { updateUserInfo } from "@/helpers/accounts/Methods";
+import {
+  getInitialValues,
+  validationSchema,
+} from "@/helpers/accounts/ProfileInformationForm";
+import { User } from "@/types/User";
 
-  useEffect(() => {
-    const fetchUserInformation = async () => {
-      const response = await fetchUserInfo(user?.id);
-      const data = response.data;
+import Field from "@/components/form/InputField";
+import { Alert } from "@/utils/alert/swal";
 
-      setFirstname(data.firstname);
-      setLastname(data.lastname);
-      setEmail(data.email);
-      setAddressLine1(data.address_line_1);
-      setAddressLine2(data.address_line_2);
-      setCity(data.city);
-      setContact(data.contact);
-    };
+export default function ContactForm({ user }: { user: User }) {
+  const [edit, setEdit] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const initialValues = getInitialValues(user);
 
-    fetchUserInformation();
-  }, [user.id]);
+  const handleSubmit = async (values: User) => {
+    setLoading(true);
+    const response = await updateUserInfo(values.id, values);
 
-  const handleSubmit = async (event: any) => {
-    event.preventDefault();
-
-    const formData = new FormData(event.target);
-    const data = Object.fromEntries(formData.entries());
-
-    if (notEmptyInputs()) {
-      const response = await updateUserInfo(user?.id, data);
-
-      if (response.success) {
-        Swal.fire({
-          icon: "success",
-          title: "Updated Successfully",
-          text: "Your account information updated successfully",
-        });
-      }
+    if (response.success) {
+      Alert(
+        "success",
+        "Updated Successfully",
+        "Your account information updated successfully"
+      );
+      setEdit(false);
     }
-  };
-
-  const notEmptyInputs = () => {
-    return (
-      firstname != "" &&
-      lastname != "" &&
-      email != "" &&
-      addressLine1 != "" &&
-      addressLine2 != "" &&
-      city != "" &&
-      contact != ""
-    );
+    setLoading(false);
   };
 
   return (
     <div className="rounded border p-3 mb-2">
-      <Form onSubmit={handleSubmit} id="contactForm">
-        <div className="d-flex justify-content-between gap-3">
-          <FloatingLabel className="mb-3 w-100" label="Firstname">
-            <Form.Control
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+      >
+        {({ handleSubmit, handleChange, values, resetForm }) => (
+          <Form onSubmit={handleSubmit} id="form">
+            <div className="d-flex justify-content-between gap-3">
+              <Field
+                type="text"
+                name="firstname"
+                label="Firstname"
+                handleChange={handleChange}
+                value={values.firstname}
+                loading={!edit || loading}
+              />
+              <Field
+                type="text"
+                name="lastname"
+                label="Lastname"
+                handleChange={handleChange}
+                value={values.lastname}
+                loading={!edit || loading}
+              />
+            </div>
+            <Field
               type="text"
-              name="firstname"
-              placeholder="Firstname"
-              defaultValue={firstname}
-              required
+              name="email"
+              label="Email"
+              handleChange={handleChange}
+              value={values.email}
+              loading={!edit || loading}
             />
-          </FloatingLabel>
-          <FloatingLabel className="mb-3 w-100" label="Lastname">
-            <Form.Control
-              type="text"
-              name="lastname"
-              placeholder="Lastname"
-              defaultValue={lastname}
-              required
-            />
-          </FloatingLabel>
-        </div>
-        <FloatingLabel className="mb-3 w-100" label="Email">
-          <Form.Control
-            type="email"
-            name="email"
-            placeholder="Email"
-            defaultValue={email}
-            autoComplete="username"
-            required
-          />
-        </FloatingLabel>
-        <div className="d-flex justify-content-between gap-3">
-          <FloatingLabel className="mb-3 w-100" label="Address Line 1">
-            <Form.Control
-              type="text"
-              name="addressLine1"
-              placeholder="Address Line 1"
-              defaultValue={addressLine1}
-              required
-            />
-          </FloatingLabel>
-          <FloatingLabel className="mb-3 w-100" label="Address Line 2">
-            <Form.Control
-              type="text"
-              name="addressLine2"
-              placeholder="Address Line 2"
-              defaultValue={addressLine2}
-              required
-            />
-          </FloatingLabel>
-        </div>
-        <div className="d-flex justify-content-between gap-3">
-          <FloatingLabel className="mb-3 w-100" label="City">
-            <Form.Control
-              type="text"
-              name="city"
-              placeholder="City"
-              defaultValue={city}
-              required
-            />
-          </FloatingLabel>
-          <FloatingLabel className="mb-3 w-100" label="Contact">
-            <Form.Control
-              type="text"
-              name="contact"
-              placeholder="Contact"
-              defaultValue={contact}
-              required
-            />
-          </FloatingLabel>
-        </div>
-        <Button type="submit" className="d-block ms-auto" variant="dark">
-          Update Account
-        </Button>
-      </Form>
+            <div className="d-flex justify-content-between gap-3">
+              <Field
+                type="text"
+                name="address_line_1"
+                label="Adress Line 1"
+                handleChange={handleChange}
+                value={values.address_line_1}
+                loading={!edit || loading}
+              />
+              <Field
+                type="text"
+                name="address_line_2"
+                label="Adress Line 2"
+                handleChange={handleChange}
+                value={values.address_line_2}
+                loading={!edit || loading}
+              />
+            </div>
+            <div className="d-flex justify-content-between gap-3">
+              <Field
+                type="text"
+                name="city"
+                label="City"
+                handleChange={handleChange}
+                value={values.city}
+                loading={!edit || loading}
+              />
+              <Field
+                type="text"
+                name="contact"
+                label="Contact"
+                handleChange={handleChange}
+                value={values.contact}
+                loading={!edit || loading}
+              />
+            </div>
+            {!edit && (
+              <Button
+                className="d-block ms-auto"
+                variant="dark"
+                onClick={() => setEdit(true)}
+              >
+                Edit account
+              </Button>
+            )}
+            {edit && (
+              <div className="d-flex justify-content-end gap-1">
+                {!loading && (
+                  <Button
+                    variant="outline-dark"
+                    onClick={() => {
+                      setEdit(false);
+                      resetForm({ values: initialValues });
+                    }}
+                  >
+                    Cancel
+                  </Button>
+                )}
+                <Button type="submit" form="form" disabled={loading}>
+                  {!loading && "Update account"}
+                  {loading && (
+                    <>
+                      <Spinner
+                        as="span"
+                        size="sm"
+                        role="status"
+                        aria-hidden="true"
+                      />
+                      &nbsp;
+                      <span>Updating account...</span>
+                    </>
+                  )}
+                </Button>
+              </div>
+            )}
+          </Form>
+        )}
+      </Formik>
     </div>
   );
 }

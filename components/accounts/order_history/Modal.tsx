@@ -2,8 +2,10 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Table from "./Table";
 
+import { Order } from "@/types/Order";
+
 export default function OrderHistoryModal(props: any) {
-  const { orders } = props;
+  const { orders }: { orders: Order[] } = props;
 
   return (
     <Modal
@@ -18,7 +20,7 @@ export default function OrderHistoryModal(props: any) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Table data={orders} />
+        <Table orders={orders} />
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>

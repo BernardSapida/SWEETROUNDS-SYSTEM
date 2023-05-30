@@ -1,8 +1,8 @@
-import Button from "react-bootstrap/Button";
-import Link from "next/link";
 import { useState, useEffect } from "react";
+import Button from "react-bootstrap/Button";
+import { Alert } from "@/utils/alert/swal";
+import Link from "next/link";
 import axios from "axios";
-import Swal from "sweetalert2";
 
 interface UserInformation {
   firstname: string;
@@ -60,17 +60,13 @@ export default function Summary(props: any) {
 
   const placeOrder = async () => {
     if (cart_items.length === 0) {
-      Swal.fire({
-        icon: "error",
-        title: "Empty Donut",
-        text: "Add donuts to your cart!",
-      });
+      Alert("error", "Empty Donut", "Add donuts to your cart!");
     } else {
-      Swal.fire({
-        icon: "success",
-        title: "Successfully placed order",
-        text: "You may now check order history for updates!",
-      });
+      Alert(
+        "success",
+        "Successfully placed order",
+        "You may now check order history for updates!"
+      );
       const response = await createOrder();
       const order_id = response.order_id;
       createOrderItems(order_id);

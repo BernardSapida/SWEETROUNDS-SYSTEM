@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import { useRef } from "react";
 import Link from "next/link";
 import axios from "axios";
+import { Alert } from "@/utils/alert/swal";
 
 export default function SigninForm() {
   const firstname = useRef<HTMLInputElement>(null);
@@ -33,18 +34,9 @@ export default function SigninForm() {
 
       if (response.data.success) {
         resetForm();
-
-        Swal.fire({
-          icon: "success",
-          title: "Signup Successful",
-          text: "Account successfully created!",
-        });
+        Alert("error", "Signup Successful", "Account successfully created!");
       } else {
-        Swal.fire({
-          icon: "error",
-          title: "Invalid Input",
-          text: response.data.message,
-        });
+        Alert("error", "Invalid Input", response.data.message);
       }
     }
   };

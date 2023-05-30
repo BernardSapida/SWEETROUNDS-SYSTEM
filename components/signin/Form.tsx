@@ -1,14 +1,14 @@
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
-import Swal from "sweetalert2";
 import { useRef } from "react";
 import Link from "next/link";
 
 import SignInProviders from "./SignInProviders";
+import { Alert } from "@/utils/alert/swal";
 
 export default function SigninForm() {
   const email = useRef<HTMLInputElement>(null);
@@ -31,12 +31,7 @@ export default function SigninForm() {
       if (response?.ok) return router.push("/menu");
 
       const error = JSON.parse(response?.error!);
-
-      Swal.fire({
-        icon: "error",
-        title: "Incorrect Credential",
-        text: error.message,
-      });
+      Alert("error", "Incorrect Credential", error.message);
     }
   };
 

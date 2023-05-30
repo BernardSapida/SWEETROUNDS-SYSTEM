@@ -1,26 +1,23 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Head from "next/head";
 
-import { fetchFavoriteDonut } from "@/helpers/accounts";
 import Card from "@/components/menu/Card";
+import { Product } from "@/types/Product";
+import { User } from "@/types/User";
 
-export default function AccountPage({ user }: { user: Record<string, any> }) {
-  const [productList, setProductList] = useState<Record<string, any>[]>([]);
-
-  useEffect(() => {
-    const fetchFavorites = async () => {
-      const response = await fetchFavoriteDonut(user?.id);
-      const products = response.data;
-      setProductList(products);
-    };
-
-    fetchFavorites();
-  }, [user.id]);
+export default function AccountPage({
+  user,
+  favoriteDonuts,
+}: {
+  user: User;
+  favoriteDonuts: Product[];
+}) {
+  const [productList, setProductList] = useState<Product[]>(favoriteDonuts);
 
   const updateCart = (id: number, value: number) => {
     const updatedList = [...productList];
 
-    updatedList?.map((product: Record<string, any>) => {
+    updatedList?.map((product: Product) => {
       if (product.product_id == id) product.in_cart = value;
     });
 
@@ -30,7 +27,7 @@ export default function AccountPage({ user }: { user: Record<string, any> }) {
   const updateFavorites = (id: number, value: number) => {
     const updatedList = [...productList];
 
-    updatedList?.map((product: Record<string, any>) => {
+    updatedList?.map((product: Product) => {
       if (product.product_id == id) product.in_favorite = value;
     });
 
@@ -47,18 +44,10 @@ export default function AccountPage({ user }: { user: Record<string, any> }) {
           <strong>All Favorites</strong>
         </h3>
         <div className="d-flex justify-content-center flex-wrap gap-3">
-          {productList.map((product: Record<string, any>, index: number) => (
+          {productList.map((product: Product, index: number) => (
             <Card
               key={index}
-              id={product.product_id}
-              image={product.image}
-              name={product.name}
-              flavor={product.flavor}
-              price={product.price}
-              in_cart={product.in_cart}
-              in_favorite={product.in_favorite}
-              favorite_id={product.favorite_id}
-              cart_id={product.cart_id}
+              product={product}
               updateCart={updateCart}
               updateFavorites={updateFavorites}
               user_id={user.id}
