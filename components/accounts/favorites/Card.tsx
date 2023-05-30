@@ -1,10 +1,10 @@
 import Badge from "react-bootstrap/Badge";
 import Card from "react-bootstrap/Card";
 
-import Image from "next/image";
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { BsCartPlusFill, BsCartCheckFill } from "react-icons/bs";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
+import Image from "next/image";
 import axios from "axios";
 
 export default function MenuCard(props: any) {

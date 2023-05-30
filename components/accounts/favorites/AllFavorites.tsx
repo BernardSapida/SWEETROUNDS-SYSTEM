@@ -1,13 +1,10 @@
-import Head from "next/head";
 import { useState, useEffect } from "react";
-import axios from "axios";
-import { useSession } from "next-auth/react";
+import Head from "next/head";
 
-import Card from "@/components/menu/Card";
 import { fetchFavoriteDonut } from "@/helpers/accounts";
+import Card from "@/components/menu/Card";
 
 export default function AccountPage({ user }: { user: Record<string, any> }) {
-  const { data: session } = useSession();
   const [productList, setProductList] = useState<Record<string, any>[]>([]);
 
   useEffect(() => {
