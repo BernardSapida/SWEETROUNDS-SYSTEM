@@ -1,18 +1,18 @@
-import Container from "react-bootstrap/Container";
-import Dropdown from "react-bootstrap/Dropdown";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-
-import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { signOut } from "next-auth/react";
-
-import Link from "next/link";
 import { useRouter } from "next/router";
+import Image from "next/image";
+import Link from "next/link";
+
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import { signoutAccount } from "@/helpers/signout/Methods";
 
 export default function Header() {
   const router = useRouter();
   const { data: session } = useSession();
+
   const links = [
     {
       name: "Home",
@@ -46,12 +46,13 @@ export default function Header() {
     },
   ];
 
-  const signout = () => {
+  const signout = async () => {
     signOut({
       redirect: false,
     });
 
-    router.push("/");
+    router.push("/auth/signin");
+    await signoutAccount(session?.user.email!);
   };
 
   return (

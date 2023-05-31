@@ -39,7 +39,7 @@ declare module "next-auth/jwt" {
 
 export const authOptions: NextAuthOptions = {
   callbacks: {
-    async signIn({ user, account, profile, email, credentials }) {
+    async signIn({ user, account, profile }) {
       // if (account?.provider! !== "credentials") {
       //   verifyAccount(profile, account?.provider!);
       // }
@@ -120,11 +120,12 @@ export const authOptions: NextAuthOptions = {
   ],
   pages: {
     signIn: "/auth/signin",
+    signOut: "/auth/signin",
   },
   secret: process.env.NEXTAUTH_SECRET,
   jwt: {
     secret: process.env.NEXTAUTH_SECRET,
-    maxAge: 24 * 60 * 60,
+    maxAge: 24 * 60 * 60, // 24 hours
   },
   session: {
     maxAge: 24 * 60 * 60, // 24 hours
