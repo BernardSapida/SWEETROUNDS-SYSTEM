@@ -103,9 +103,6 @@ export default function Table(props: any) {
             defaultValue={row.cart_quantity}
             onChange={() => updateDonutQuantity(row, event)}
           />
-          {/* <Button variant="dark" size="sm">
-            <IoMdAdd />
-          </Button> */}
         </div>
       ),
     },
