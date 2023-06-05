@@ -23,7 +23,9 @@ export default function OrderHistoryModal(props: any) {
         <Table orders={orders} />
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
+        <Button onClick={props.onHide} variant="dark">
+          Close
+        </Button>
       </Modal.Footer>
     </Modal>
   );

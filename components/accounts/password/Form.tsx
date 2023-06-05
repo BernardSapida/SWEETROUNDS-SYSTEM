@@ -1,8 +1,9 @@
+import Placeholder from "react-bootstrap/Placeholder";
 import Spinner from "react-bootstrap/Spinner";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Formik } from "formik";
 
 import { updatePassword } from "@/helpers/accounts/Methods";
@@ -18,8 +19,11 @@ import {
 import { Alert } from "@/utils/alert/swal";
 
 export default function ContactForm({ user }: { user: User }) {
-  const [edit, setEdit] = useState<boolean>(false);
+  const [pageLoading, setPageLoading] = useState<boolean>(true);
   const [loading, setLoading] = useState<boolean>(false);
+  const [edit, setEdit] = useState<boolean>(false);
+
+  useEffect(() => setPageLoading(false), []);
 
   const handleSubmit = async (
     values: Password,
@@ -51,7 +55,13 @@ export default function ContactForm({ user }: { user: User }) {
   return (
     <div className="rounded border p-3 mb-2">
       <h3 className="text-center mb-4">
-        <strong>Password</strong>
+        {pageLoading ? (
+          <Placeholder animation="glow">
+            <Placeholder bg="dark" style={{ borderRadius: 5, width: 300 }} />
+          </Placeholder>
+        ) : (
+          <strong>Update Password</strong>
+        )}
       </h3>
       <Formik
         initialValues={initialValues}
@@ -60,23 +70,51 @@ export default function ContactForm({ user }: { user: User }) {
       >
         {({ handleSubmit, handleChange, values, resetForm }) => (
           <Form onSubmit={handleSubmit} id="form">
-            <Field
-              type="password"
-              name="password"
-              label="Password"
-              handleChange={handleChange}
-              value={values.password}
-              loading={!edit || loading}
-            />
-            <Field
-              type="password"
-              name="confirmPassword"
-              label="Confirm Password"
-              handleChange={handleChange}
-              value={values.confirmPassword}
-              loading={!edit || loading}
-            />
-            {!edit && (
+            {pageLoading ? (
+              <Placeholder animation="glow" className="w-100">
+                <Placeholder
+                  className="mb-3 w-100 d-block"
+                  bg="secondary"
+                  style={{ borderRadius: 5, width: 100, height: 57 }}
+                />
+              </Placeholder>
+            ) : (
+              <Field
+                type="password"
+                name="password"
+                label="Password"
+                handleChange={handleChange}
+                value={values.password}
+                loading={!edit || loading}
+              />
+            )}
+            {pageLoading ? (
+              <Placeholder animation="glow" className="w-100">
+                <Placeholder
+                  className="mb-3 w-100 d-block"
+                  bg="secondary"
+                  style={{ borderRadius: 5, width: 100, height: 57 }}
+                />
+              </Placeholder>
+            ) : (
+              <Field
+                type="password"
+                name="confirmPassword"
+                label="Confirm Password"
+                handleChange={handleChange}
+                value={values.confirmPassword}
+                loading={!edit || loading}
+              />
+            )}
+            {pageLoading && (
+              <Placeholder.Button
+                animation="glow"
+                className="d-block ms-auto"
+                style={{ width: 115, height: 35 }}
+                variant="dark"
+              />
+            )}
+            {!edit && !pageLoading && (
               <Button
                 className="d-block ms-auto"
                 variant="dark"

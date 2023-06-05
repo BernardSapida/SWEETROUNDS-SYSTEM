@@ -1,3 +1,4 @@
+import Placeholder from "react-bootstrap/Placeholder";
 import Button from "react-bootstrap/Button";
 
 import { useEffect, useState } from "react";
@@ -18,6 +19,7 @@ export default function Card(props: any) {
     payment_status,
     quantity,
     total,
+    loading,
   } = props;
 
   useEffect(() => {
@@ -47,31 +49,103 @@ export default function Card(props: any) {
         <div className="d-flex justify-content-between flex-wrap">
           <div>
             <p className="lh-1 text-start">
-              <strong>Order Number:</strong> {order_number}
+              {loading ? (
+                <Placeholder animation="glow">
+                  <Placeholder
+                    bg="secondary"
+                    style={{ borderRadius: 5, width: 300 }}
+                  />
+                </Placeholder>
+              ) : (
+                <>
+                  <strong>Order Number:</strong> {order_number}
+                </>
+              )}
             </p>
             <p className="lh-1 text-start">
-              <strong>Order Status:</strong> {order_status}
+              {loading ? (
+                <Placeholder animation="glow">
+                  <Placeholder
+                    bg="secondary"
+                    style={{ borderRadius: 5, width: 300 }}
+                  />
+                </Placeholder>
+              ) : (
+                <>
+                  <strong>Order Status:</strong> {order_status}
+                </>
+              )}
             </p>
             <p className="lh-1 text-start">
-              <strong>Overall Quantity:</strong> {quantity}
+              {loading ? (
+                <Placeholder animation="glow">
+                  <Placeholder
+                    bg="secondary"
+                    style={{ borderRadius: 5, width: 300 }}
+                  />
+                </Placeholder>
+              ) : (
+                <>
+                  <strong>Overall Quantity:</strong> {quantity}
+                </>
+              )}
             </p>
           </div>
           <div>
             <p className="lh-1 text-start">
-              <strong>Date:</strong> {date}
+              {loading ? (
+                <Placeholder animation="glow">
+                  <Placeholder
+                    bg="secondary"
+                    style={{ borderRadius: 5, width: 300 }}
+                  />
+                </Placeholder>
+              ) : (
+                <>
+                  <strong>Date:</strong> {date}
+                </>
+              )}
             </p>
             <p className="lh-1 text-start">
-              <strong>Payment Status:</strong> {payment_status}
+              {loading ? (
+                <Placeholder animation="glow">
+                  <Placeholder
+                    bg="secondary"
+                    style={{ borderRadius: 5, width: 300 }}
+                  />
+                </Placeholder>
+              ) : (
+                <>
+                  <strong>Payment Status:</strong> {payment_status}
+                </>
+              )}
             </p>
             <p className="lh-1 text-start">
-              <strong>Total Amount: Php {total}</strong>
+              {loading ? (
+                <Placeholder animation="glow">
+                  <Placeholder
+                    bg="secondary"
+                    style={{ borderRadius: 5, width: 300 }}
+                  />
+                </Placeholder>
+              ) : (
+                <strong>Total Amount: Php {total}</strong>
+              )}
             </p>
           </div>
         </div>
         <div className="d-grid">
-          <Button variant="dark" size="sm" onClick={() => setModalShow(true)}>
-            View Details
-          </Button>
+          {loading ? (
+            <Placeholder.Button
+              animation="glow"
+              variant="dark"
+              style={{ height: 30 }}
+            />
+          ) : (
+            <Button variant="dark" size="sm" onClick={() => setModalShow(true)}>
+              View Details
+            </Button>
+          )}
         </div>
       </div>
     </>

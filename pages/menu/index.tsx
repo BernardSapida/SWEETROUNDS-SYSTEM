@@ -1,6 +1,8 @@
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { getSession } from "next-auth/react";
 import { useEffect, useState } from "react";
+
+import Placeholder from "react-bootstrap/Placeholder";
 import Form from "react-bootstrap/Form";
 import Head from "next/head";
 
@@ -52,8 +54,10 @@ export default function AccountPage({
   user: User;
   products: Product[];
 }) {
+  const [loading, setLoading] = useState<boolean[]>(Array(100).fill(true));
   const [productList, setProductList] = useState<Product[]>(products);
-  const [keyword, setKeyword] = useState("");
+  const [pageLoading, setPageLoading] = useState<boolean>(true);
+  const [keyword, setKeyword] = useState<string>("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -68,6 +72,7 @@ export default function AccountPage({
       setProductList(response.data);
     };
 
+    setPageLoading(false);
     fetchData();
   }, [keyword, user.id]);
 
@@ -96,26 +101,64 @@ export default function AccountPage({
     setKeyword(value);
   };
 
+  const handleImageLoad = (index: number) => {
+    setLoading((prevLoading) => {
+      const updatedLoading = [...prevLoading];
+      updatedLoading[index] = false;
+      return updatedLoading;
+    });
+  };
+
   return (
     <>
       <Head>
         <title>Sweet Rounds | Menu</title>
       </Head>
       <h1 className="text-center mb-5">
-        <strong>Our Donuts</strong>
+        {pageLoading ? (
+          <Placeholder animation="glow">
+            <Placeholder
+              xs={2}
+              bg="dark"
+              style={{
+                height: 20,
+                borderRadius: 5,
+              }}
+            />
+          </Placeholder>
+        ) : (
+          <strong>Our Donuts</strong>
+        )}
       </h1>
-      <Form.Group className="mb-3">
-        <Form.Control
-          type="text"
-          placeholder="Search donut"
-          onChange={handleSearchInput}
-        />
-      </Form.Group>
+      {pageLoading ? (
+        <Placeholder animation="glow">
+          <Placeholder
+            className="w-100 mb-3"
+            xs={2}
+            bg="secondary"
+            style={{
+              height: 40,
+              borderRadius: 5,
+            }}
+          />
+        </Placeholder>
+      ) : (
+        <Form.Group className="mb-3">
+          <Form.Control
+            type="text"
+            placeholder="Search donut by name, flavor, and price"
+            onChange={handleSearchInput}
+          />
+        </Form.Group>
+      )}
       <div className="d-flex justify-content-center flex-wrap gap-3">
         {productList.length == 0 && <h3 className="mt-3">No donut found!</h3>}
         {productList.map((product: Product, index: number) => (
           <Card
             key={index}
+            index={index}
+            loading={loading[index]}
+            handleImageLoad={handleImageLoad}
             product={product}
             updateCart={updateCart}
             updateFavorites={updateFavorites}

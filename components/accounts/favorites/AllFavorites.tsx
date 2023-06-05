@@ -12,6 +12,7 @@ export default function AccountPage({
   user: User;
   favoriteDonuts: Product[];
 }) {
+  const [loading, setLoading] = useState<boolean[]>(Array(100).fill(true));
   const [productList, setProductList] = useState<Product[]>(favoriteDonuts);
 
   const updateCart = (id: number, value: number) => {
@@ -34,6 +35,14 @@ export default function AccountPage({
     setProductList(updatedList);
   };
 
+  const handleImageLoad = (index: number) => {
+    setLoading((prevLoading) => {
+      const updatedLoading = [...prevLoading];
+      updatedLoading[index] = false;
+      return updatedLoading;
+    });
+  };
+
   return (
     <>
       <Head>
@@ -48,6 +57,9 @@ export default function AccountPage({
           {productList.map((product: Product, index: number) => (
             <Card
               key={index}
+              index={index}
+              loading={loading[index]}
+              handleImageLoad={handleImageLoad}
               product={product}
               updateCart={updateCart}
               updateFavorites={updateFavorites}

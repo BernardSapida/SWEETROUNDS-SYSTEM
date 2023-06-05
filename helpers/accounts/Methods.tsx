@@ -34,7 +34,7 @@ export const updateUserInfo = async (
   return response.data;
 };
 
-export const fetchFavoriteDonut = async (user_id: string) => {
+export const fetchFavoriteDonut = async (user_id: number) => {
   const response = await axios.post(
     `${process.env.NEXT_PUBLIC_URL}/api/v1/products/favorites`,
     {

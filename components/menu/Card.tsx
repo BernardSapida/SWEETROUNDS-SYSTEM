@@ -3,17 +3,24 @@ import axios from "axios";
 
 import { BsCartPlusFill, BsCartCheckFill } from "react-icons/bs";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import Placeholder from "react-bootstrap/Placeholder";
 import Badge from "react-bootstrap/Badge";
 import Card from "react-bootstrap/Card";
 
 import { Product } from "@/types/Product";
 
 export default function DonutCard({
+  index,
+  loading,
+  handleImageLoad,
   product,
   updateCart,
   updateFavorites,
   user_id,
 }: {
+  index: number;
+  loading: boolean;
+  handleImageLoad: any;
   product: Product;
   updateCart: any;
   updateFavorites: any;
@@ -78,60 +85,140 @@ export default function DonutCard({
   };
 
   return (
-    <>
-      <Card style={{ width: "10rem", position: "relative" }}>
-        <Card.Body className="d-grid">
-          <Image
-            src={`/donuts/${image}`}
-            height="100"
-            width="100"
-            alt="SweetRounds Banner"
-            className="mx-auto mb-3"
-          ></Image>
-          <p className="text-center fs-5 lh-1 mb-1">
+    <Card style={{ width: "10rem", position: "relative" }}>
+      <Card.Body className="d-grid" style={{ position: "relative" }}>
+        {loading && (
+          <Placeholder className="mx-auto" animation="glow">
+            <Placeholder
+              style={{
+                height: 100,
+                width: 100,
+                borderRadius: 50,
+                position: "absolute",
+                top: 75,
+                transform: "translate(-50%, -50%)",
+                backgroundColor: "#F9B15D",
+              }}
+            />
+          </Placeholder>
+        )}
+        <Image
+          src={`/donuts/${image}`}
+          height="100"
+          width="100"
+          alt="SweetRounds Banner"
+          className="mx-auto mt-2 mb-3"
+          style={{ visibility: `${loading ? "hidden" : "visible"}` }}
+          onLoad={() => handleImageLoad(index)}
+        />
+        <p className="text-center fs-5 lh-1 mb-1">
+          {loading ? (
+            <Placeholder animation="glow">
+              <Placeholder
+                bg="dark"
+                style={{
+                  width: 80,
+                  height: 20,
+                  borderRadius: 5,
+                }}
+              />
+            </Placeholder>
+          ) : (
             <strong>{name}</strong>
-          </p>
-          <p className="text-center fs-6 lh-1 text-secondary">{flavor}</p>
-          <div className="d-flex justify-content-between g-3">
-            <p className="fs-6">
+          )}
+        </p>
+        <p className="text-center fs-6 lh-1 text-secondary">
+          {loading ? (
+            <Placeholder animation="glow">
+              <Placeholder
+                bg="dark"
+                style={{
+                  width: 50,
+                  height: 20,
+                  borderRadius: 5,
+                }}
+              />
+            </Placeholder>
+          ) : (
+            flavor
+          )}
+        </p>
+        <div className="d-flex justify-content-between g-3">
+          <p className="fs-6">
+            {loading ? (
+              <Placeholder animation="glow">
+                <Placeholder
+                  bg="dark"
+                  style={{
+                    width: 60,
+                    height: 20,
+                    borderRadius: 5,
+                  }}
+                />
+              </Placeholder>
+            ) : (
               <Badge bg="dark" style={{ maxWidth: "max-content" }}>
                 Php {price}
               </Badge>
-            </p>
-            {in_cart == 1 && (
-              <BsCartCheckFill
+            )}
+          </p>
+          {loading && (
+            <Placeholder animation="glow">
+              <Placeholder
+                bg="dark"
                 style={{
-                  fontSize: 25,
-                  color: "rgba(18, 192, 85, 1)",
-                  cursor: "pointer",
+                  width: 20,
+                  height: 20,
+                  borderRadius: 5,
                 }}
-                onClick={removeToCart}
               />
-            )}
-            {in_cart == 0 && (
-              <BsCartPlusFill
-                style={{ fontSize: 25, cursor: "pointer" }}
-                onClick={addToCart}
+            </Placeholder>
+          )}
+          {in_cart == 1 && !loading && (
+            <BsCartCheckFill
+              style={{
+                fontSize: 25,
+                color: "rgba(18, 192, 85, 1)",
+                cursor: "pointer",
+              }}
+              onClick={removeToCart}
+            />
+          )}
+          {in_cart == 0 && !loading && (
+            <BsCartPlusFill
+              style={{ fontSize: 25, cursor: "pointer" }}
+              onClick={addToCart}
+            />
+          )}
+        </div>
+        <div style={{ position: "absolute", top: 15, right: 15 }}>
+          {loading && (
+            <Placeholder animation="glow">
+              <Placeholder
+                style={{
+                  width: 25,
+                  height: 25,
+                  borderRadius: 12.5,
+                  backgroundColor: "#ff0028cc",
+                }}
               />
-            )}
-          </div>
-          <div style={{ position: "absolute", right: 15 }}>
-            {in_favorite == 1 && (
-              <AiFillHeart
-                style={{ fontSize: 25, color: "#ff0028cc", cursor: "pointer" }}
-                onClick={removeToFavorite}
-              />
-            )}
-            {in_favorite == 0 && (
-              <AiOutlineHeart
-                className="pointer"
-                style={{ fontSize: 25, color: "#ff0028cc", cursor: "pointer" }}
-                onClick={addToFavorite}
-              />
-            )}
-          </div>
-        </Card.Body>
-      </Card>
-    </>
+            </Placeholder>
+          )}
+          {in_favorite == 1 && !loading && (
+            <AiFillHeart
+              style={{ fontSize: 25, color: "#ff0028cc", cursor: "pointer" }}
+              onClick={removeToFavorite}
+            />
+          )}
+          {in_favorite == 0 && !loading && (
+            <AiOutlineHeart
+              className="pointer"
+              style={{ fontSize: 25, color: "#ff0028cc", cursor: "pointer" }}
+              onClick={addToFavorite}
+            />
+          )}
+        </div>
+      </Card.Body>
+    </Card>
   );
 }

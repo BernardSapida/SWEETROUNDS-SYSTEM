@@ -1,6 +1,6 @@
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { getSession } from "next-auth/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Head from "next/head";
 
 import Row from "react-bootstrap/Row";
@@ -59,8 +59,11 @@ export default function AccountPage({
   cart_items: Cart[];
   setting: Setting;
 }) {
+  const [loading, setLoading] = useState<boolean>(true);
   const [items, setItems] = useState<Cart[]>(cart_items);
   const [note, setNote] = useState<string>("No note");
+
+  useEffect(() => setLoading(false), []);
 
   return (
     <>
@@ -70,6 +73,7 @@ export default function AccountPage({
       <Row>
         <Col md={7} sm={12}>
           <Items
+            loading={loading}
             cart_items={items}
             setItems={setItems}
             note={note}
@@ -78,6 +82,7 @@ export default function AccountPage({
         </Col>
         <Col md={5} sm={12}>
           <Summary
+            loading={loading}
             cart_items={items}
             setting={setting}
             note={note}

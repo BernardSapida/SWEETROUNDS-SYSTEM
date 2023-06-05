@@ -1,3 +1,4 @@
+import Placeholder from "react-bootstrap/Placeholder";
 import DataTable from "react-data-table-component";
 import { BsFillTrashFill } from "react-icons/bs";
 import Spinner from "react-bootstrap/Spinner";
@@ -131,39 +132,37 @@ export default function Table(props: any) {
   ];
 
   return (
-    <>
-      <DataTable
-        customStyles={{
-          headCells: {
-            style: {
-              color: "gray",
-              fontSize: "16px",
-              fontFamily: "system-ui, -apple-system",
-              fontWeight: 400,
-            },
+    <DataTable
+      customStyles={{
+        headCells: {
+          style: {
+            color: "gray",
+            fontSize: "16px",
+            fontFamily: "system-ui, -apple-system",
+            fontWeight: 400,
           },
-          rows: {
-            style: {
-              fontSize: "16px",
-              fontFamily: "system-ui, -apple-system",
-            },
+        },
+        rows: {
+          style: {
+            fontSize: "16px",
+            fontFamily: "system-ui, -apple-system",
           },
-        }}
-        columns={table_columns}
-        data={items}
-        pagination
-        persistTableHead
-        responsive={true}
-        highlightOnHover={true}
-        progressPending={loading}
-        paginationRowsPerPageOptions={[10]}
-        progressComponent={
-          <span className="d-flex align-items-center">
-            <Spinner animation="grow" className="my-3" size="sm" /> &nbsp;
-            Loading...
-          </span>
-        }
-      />
-    </>
+        },
+      }}
+      columns={table_columns}
+      data={items}
+      pagination
+      persistTableHead
+      responsive={true}
+      highlightOnHover={true}
+      progressPending={loading}
+      paginationRowsPerPageOptions={[10]}
+      progressComponent={
+        <span className="d-flex align-items-center">
+          <Spinner animation="grow" className="my-3" size="sm" /> &nbsp;
+          Loading...
+        </span>
+      }
+    />
   );
 }

@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction, useState } from "react";
 
+import Placeholder from "react-bootstrap/Placeholder";
 import Button from "react-bootstrap/Button";
 import Table from "./Table";
 
@@ -8,11 +9,13 @@ import Modal from "@/components/cart/Modal";
 import { Cart } from "@/types/Cart";
 
 export default function Items({
+  loading,
   cart_items,
   setItems,
   note,
   setNote,
 }: {
+  loading: boolean;
   cart_items: Cart[];
   setItems: Dispatch<SetStateAction<Cart[]>>;
   setNote: Dispatch<SetStateAction<string>>;
@@ -29,18 +32,61 @@ export default function Items({
         setNote={setNote}
       />
       <div style={{ width: "100%" }}>
-        <div className="d-flex justify-content-between">
+        <div className="d-flex justify-content-between align-items-center">
           <h1 className="text-primary fs-2">
-            Cart{" "}
-            <span className="fs-6 text-secondary">
-              ({cart_items.length} items)
-            </span>
+            {loading ? (
+              <Placeholder animation="glow">
+                <Placeholder
+                  style={{
+                    width: 100,
+                    borderRadius: 5,
+                  }}
+                />
+                <Placeholder
+                  className="ms-2"
+                  style={{
+                    width: 100,
+                    height: 5,
+                    borderRadius: 5,
+                  }}
+                  bg="dark"
+                />
+              </Placeholder>
+            ) : (
+              <>
+                Cart{" "}
+                <span className="fs-6 text-secondary">
+                  ({cart_items.length} items)
+                </span>
+              </>
+            )}
           </h1>
-          <Button variant="dark" size="sm" onClick={() => setModalShow(true)}>
-            Add Note
-          </Button>
+          {loading ? (
+            <Placeholder.Button
+              animation="glow"
+              variant="dark"
+              style={{ height: 40, width: 80 }}
+            />
+          ) : (
+            <Button variant="dark" size="sm" onClick={() => setModalShow(true)}>
+              Add Note
+            </Button>
+          )}
         </div>
-        <Table items={cart_items} setItems={setItems} />
+        {loading ? (
+          <Placeholder animation="glow">
+            <Placeholder
+              className="w-100 mt-2"
+              style={{
+                height: 460,
+                borderRadius: 5,
+              }}
+              bg="secondary"
+            />
+          </Placeholder>
+        ) : (
+          <Table items={cart_items} setItems={setItems} />
+        )}
       </div>
     </>
   );

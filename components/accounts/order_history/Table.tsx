@@ -3,25 +3,25 @@ import Image from "next/image";
 import DataTable from "react-data-table-component";
 import Spinner from "react-bootstrap/Spinner";
 
-import { Product } from "@/types/Product";
+import { Order } from "@/types/Order";
 
-export default function Table({ orders }: { orders: Product[] }) {
+export default function Table({ orders }: { orders: Order[] }) {
   const table_columns = [
     {
       name: "DONUT NAME",
-      selector: (row: Product) => row.name,
+      selector: (row: Record<string, any>) => row.name,
       sortable: true,
     },
     {
       name: "FLAVOR",
-      selector: (row: Product) => row.flavor,
+      selector: (row: Record<string, any>) => row.flavor,
       sortable: true,
     },
     {
       name: "IMAGE",
-      selector: (row: Product) => row.image,
+      selector: (row: Record<string, any>) => row.image,
       sortable: true,
-      cell: (row: Product) => (
+      cell: (row: Record<string, any>) => (
         <Image
           src={`/donuts/${row["image"]}`}
           height={80}
@@ -33,12 +33,12 @@ export default function Table({ orders }: { orders: Product[] }) {
     },
     {
       name: "QUANTITY",
-      selector: (row: Product) => row.quantity,
+      selector: (row: Record<string, any>) => row.quantity,
       sortable: true,
     },
     {
       name: "PRICE",
-      selector: (row: Product) => row.price,
+      selector: (row: Record<string, any>) => row.price,
       sortable: true,
     },
   ];
