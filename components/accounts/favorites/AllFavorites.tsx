@@ -48,23 +48,30 @@ export default function AccountPage({
       <Head>
         <title>Sweet Rounds | Menu</title>
       </Head>
-      <div className="rounded border p-3 mb-2">
+      <div className="rounded p-3 mb-2 bg-white">
         <h3 className="text-center mb-4">
           <strong>All Favorites</strong>
         </h3>
         <div className="d-flex justify-content-center flex-wrap gap-3">
           {productList.length == 0 && <p>No favorites in your list</p>}
           {productList.map((product: Product, index: number) => (
-            <Card
+            <div
               key={index}
-              index={index}
-              loading={loading[index]}
-              handleImageLoad={handleImageLoad}
-              product={product}
-              updateCart={updateCart}
-              updateFavorites={updateFavorites}
-              user_id={user.id}
-            />
+              style={{
+                borderRadius: 40,
+                boxShadow: "0 0 10px hsla(0, 0%, 80%, 0.5)",
+              }}
+            >
+              <Card
+                index={index}
+                loading={loading[index]}
+                handleImageLoad={handleImageLoad}
+                product={product}
+                updateCart={updateCart}
+                updateFavorites={updateFavorites}
+                user_id={user.id}
+              />
+            </div>
           ))}
         </div>
       </div>

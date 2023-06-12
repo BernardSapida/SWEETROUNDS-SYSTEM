@@ -1,0 +1,15 @@
+.active {
+  background-color: hsl(0, 100%, 71%);
+  color: hsl(0, 0%, 100%) !important;
+  border: none;
+}
+.active:hover {
+  color: hsl(0, 0%, 100%) !important;
+}
+
+.link {
+  color: hsl(0, 0%, 0%);
+}
+.link:hover {
+  color: hsl(0, 0%, 0%);
+}/*# sourceMappingURL=accounts.module.css.map */

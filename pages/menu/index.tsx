@@ -114,7 +114,7 @@ export default function AccountPage({
       <Head>
         <title>Sweet Rounds | Menu</title>
       </Head>
-      <h1 className="text-center mb-5">
+      <h1 className="text-center mb-4">
         {pageLoading ? (
           <Placeholder animation="glow">
             <Placeholder

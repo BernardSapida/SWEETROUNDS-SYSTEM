@@ -19,6 +19,8 @@ import { User } from "@/types/User";
 import { Alert } from "@/utils/alert/swal";
 import { Cart } from "@/types/Cart";
 
+import style from "@/public/css/cart.module.css";
+
 export default function Summary({
   loading,
   cart_items,
@@ -109,8 +111,8 @@ export default function Summary({
   };
 
   return (
-    <div style={{ width: "100%" }}>
-      <h1 className="text-primary fs-2 mb-4">
+    <div className={`${style.summary_container} px-3 py-4 bg-white`}>
+      <h1 className={`${style.title} fs-2 mb-4`}>
         {loading ? (
           <Placeholder animation="glow">
             <Placeholder xs={4} style={{ borderRadius: 5 }} />
@@ -240,7 +242,7 @@ export default function Summary({
       </div>
       <hr />
       <div className="d-flex justify-content-between gap-5">
-        <p className="fs-6 lh-1">
+        <p className={`${style.text_primary} fs-6 lh-1`}>
           {loading ? (
             <Placeholder animation="glow">
               <Placeholder style={{ borderRadius: 5, width: 130 }} bg="dark" />
@@ -249,7 +251,7 @@ export default function Summary({
             <strong>Total</strong>
           )}
         </p>
-        <p className="fs-6 lh-1 text-primary">
+        <p className={`${style.text_primary} fs-6 lh-1`}>
           {loading ? (
             <Placeholder animation="glow">
               <Placeholder
@@ -325,7 +327,7 @@ export default function Summary({
             <p className="fs-6 lh-1 mb-2 text-secondary">{city}</p>
           </div>
           <div className="d-grid">
-            <Button variant="primary" onClick={placeOrder}>
+            <Button className={`${style.placeorder_btn}`} onClick={placeOrder}>
               <BsCartFill className="mb-2" /> Place Order
             </Button>
           </div>

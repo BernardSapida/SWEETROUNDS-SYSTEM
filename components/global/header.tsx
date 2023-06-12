@@ -8,6 +8,8 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { signoutAccount } from "@/helpers/signout/Methods";
 
+import style from "@/public/css/navbar.module.css";
+
 export default function Header() {
   const router = useRouter();
   const { data: session } = useSession();
@@ -25,7 +27,7 @@ export default function Header() {
     },
     {
       name: "Contact Us",
-      path: "contact",
+      path: "/contact",
       show: true,
     },
     {
@@ -40,7 +42,7 @@ export default function Header() {
     },
     {
       name: "Account",
-      path: "/account?page=order_history",
+      path: "/account",
       show: session,
     },
   ];
@@ -74,7 +76,7 @@ export default function Header() {
               priority={true}
             ></Image>
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Toggle />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
               {links.map((link) => (
@@ -82,44 +84,37 @@ export default function Header() {
                   key={link.name}
                   as={Link}
                   href={link.path}
-                  className={`${link.show ? "d-block" : "d-none"} ${
-                    link.path === router.asPath ? "active" : ""
-                  }`}
+                  className={`${style.link} ${
+                    link.show ? "d-block" : "d-none"
+                  } ${link.path === router.route ? style.active : ""}`}
                 >
                   {link.name}
+                  {}
                 </Nav.Link>
               ))}
-
-              {/* <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown> */}
             </Nav>
             <Nav>
               <Nav.Link
                 as={Link}
                 href={"/auth/signin"}
-                className={`${!session ? "d-block" : "d-none"}`}
+                className={`${style.link} ${
+                  router.asPath == "/auth/signin" ? style.active : ""
+                } ${!session ? "d-block" : "d-none"}`}
               >
                 Sign In
               </Nav.Link>
               <Nav.Link
                 as={Link}
                 href={"/signup"}
-                className={`${!session ? "d-block" : "d-none"}`}
+                className={`${style.link} ${
+                  router.asPath == "/signup" ? style.active : ""
+                } ${!session ? "d-block" : "d-none"}`}
               >
                 Sign Up
               </Nav.Link>
               <Nav.Link
                 onClick={signout}
-                className={`${session ? "d-block" : "d-none"}`}
+                className={`${style.link} ${session ? "d-block" : "d-none"}`}
               >
                 Sign Out
               </Nav.Link>

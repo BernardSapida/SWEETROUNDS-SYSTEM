@@ -1,0 +1,13 @@
+.active {
+  color: hsl(0, 100%, 71%) !important;
+}
+
+.link {
+  font-size: 18px !important;
+  font-weight: 500 !important;
+  color: black;
+
+  &:hover {
+    color: hsl(0, 100%, 81%) !important;
+  }
+}

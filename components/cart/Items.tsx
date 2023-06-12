@@ -8,6 +8,8 @@ import Modal from "@/components/cart/Modal";
 
 import { Cart } from "@/types/Cart";
 
+import style from "@/public/css/cart.module.css";
+
 export default function Items({
   loading,
   cart_items,
@@ -32,8 +34,8 @@ export default function Items({
         setNote={setNote}
       />
       <div style={{ width: "100%" }}>
-        <div className="d-flex justify-content-between align-items-center">
-          <h1 className="text-primary fs-2">
+        <div className="d-flex justify-content-between align-items-center mb-2">
+          <h1 className={`${style.title} fs-2`}>
             {loading ? (
               <Placeholder animation="glow">
                 <Placeholder

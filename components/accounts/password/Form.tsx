@@ -53,7 +53,7 @@ export default function ContactForm({ user }: { user: User }) {
   };
 
   return (
-    <div className="rounded border p-3 mb-2">
+    <div className="rounded p-3 mb-2 bg-white">
       <h3 className="text-center mb-4">
         {pageLoading ? (
           <Placeholder animation="glow">

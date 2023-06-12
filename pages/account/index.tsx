@@ -20,6 +20,8 @@ import {
   fetchOrderHistory,
 } from "@/helpers/accounts/Methods";
 
+import style from "@/public/css/accounts.module.css";
+
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {
@@ -91,32 +93,32 @@ export default function AccountPage({
           ) : (
             <div className="list-group" id="list-tab" role="tablist">
               <Link
-                className={`list-group-item ${
-                  router.query["page"] == "order_history" && "active"
+                className={`list-group-item ${style.link} ${
+                  router.query["page"] == undefined && style.active
                 }`}
-                href="/account?page=order_history"
+                href="/account"
               >
                 Order History
               </Link>
               <Link
-                className={`list-group-item ${
-                  router.query["page"] == "profile_information" && "active"
+                className={`list-group-item ${style.link} ${
+                  router.query["page"] == "profile_information" && style.active
                 }`}
                 href="/account?page=profile_information"
               >
                 Profile Information
               </Link>
               <Link
-                className={`list-group-item ${
-                  router.query["page"] == "favorites" && "active"
+                className={`list-group-item ${style.link} ${
+                  router.query["page"] == "favorites" && style.active
                 }`}
                 href="/account?page=favorites"
               >
                 Favorites
               </Link>
               <Link
-                className={`list-group-item ${
-                  router.query["page"] == "password" && "active"
+                className={`list-group-item ${style.link} ${
+                  router.query["page"] == "password" && style.active
                 }`}
                 href="/account?page=password"
               >
@@ -126,7 +128,7 @@ export default function AccountPage({
           )}
         </div>
         <div className="col-8">
-          {router.query["page"] == "order_history" && (
+          {router.query["page"] == undefined && (
             <History user={user} orderHistory={orderHistory} />
           )}
           {router.query["page"] == "profile_information" && (

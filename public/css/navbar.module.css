@@ -1,0 +1,12 @@
+.active {
+  color: hsl(0, 100%, 71%) !important;
+}
+
+.link {
+  font-size: 18px !important;
+  font-weight: 500 !important;
+  color: black;
+}
+.link:hover {
+  color: hsl(0, 100%, 81%) !important;
+}/*# sourceMappingURL=navbar.module.css.map */

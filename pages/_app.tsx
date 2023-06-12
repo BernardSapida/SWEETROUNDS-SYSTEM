@@ -35,7 +35,7 @@ export default function App({
         />
       </Head>
       <NextNProgress
-        color="linear-gradient(to right, orange, red)"
+        color="linear-gradient(to right, hsl(0, 100%, 66%), hsl(0, 100%, 71%))"
         options={{ showSpinner: false }}
       />
       <Header />

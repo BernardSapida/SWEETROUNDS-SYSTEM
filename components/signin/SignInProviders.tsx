@@ -1,10 +1,11 @@
-import ButtonProvider from "@/components/signin/ButtonProvider";
+import { FaFacebookF, FaGithub } from "react-icons/fa";
+import { AiOutlineGoogle } from "react-icons/ai";
+
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/router";
+
+import ButtonProvider from "@/components/signin/ButtonProvider";
 
 export default function SignInProviders(props: any) {
-  const router = useRouter();
-
   const signInProvider = async (providerName: string) => {
     props.open();
     const res = await signIn(providerName, {
@@ -14,30 +15,22 @@ export default function SignInProviders(props: any) {
   };
 
   return (
-    <>
+    <div className="d-flex align-items-center gap-2 mx-auto">
       <ButtonProvider
-        type="button"
-        title="Sign In with Google"
-        variant="default"
         name="google"
         signInProvider={signInProvider}
+        icon={<AiOutlineGoogle style={{ fontSize: 20, placeSelf: "center" }} />}
       />
       <ButtonProvider
-        type="button"
-        title="Sign In with Facebook"
-        variant="gradient"
         name="facebook"
-        from={["blue", "blue"]}
         signInProvider={signInProvider}
+        icon={<FaFacebookF style={{ fontSize: 20, placeSelf: "center" }} />}
       />
       <ButtonProvider
-        type="button"
-        title="Sign In with Github"
-        variant="gradient"
         name="github"
-        from={["black", "black"]}
         signInProvider={signInProvider}
+        icon={<FaGithub style={{ fontSize: 20, placeSelf: "center" }} />}
       />
-    </>
+    </div>
   );
 }

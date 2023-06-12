@@ -17,6 +17,8 @@ import { Contact } from "@/types/Contact";
 
 import { Alert } from "@/utils/alert/swal";
 
+import style from "@/public/css/contact.module.css";
+
 export default function ContactForm({ pageLoading }: { pageLoading: boolean }) {
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -127,8 +129,7 @@ export default function ContactForm({ pageLoading }: { pageLoading: boolean }) {
           ) : (
             <Button
               type="submit"
-              className="d-block ms-auto"
-              variant="primary"
+              className={`${style.send_btn} d-block ms-auto`}
               disabled={loading}
             >
               <BsFillSendFill className="mb-1" />

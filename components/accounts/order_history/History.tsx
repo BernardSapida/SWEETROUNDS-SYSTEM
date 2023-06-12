@@ -19,7 +19,7 @@ export default function OrderHistory({
   useEffect(() => setLoading(false), []);
 
   return (
-    <div className="rounded border p-3 mb-2 text-center">
+    <div className="rounded p-3 mb-2 text-center bg-white">
       <h3 className="text-center mb-4">
         {loading ? (
           <Placeholder animation="glow">

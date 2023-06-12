@@ -1,0 +1,17 @@
+.active {
+  background-color: hsl(0, 100%, 71%);
+  color: hsl(0, 0%, 100%) !important;
+  border: none;
+
+  &:hover {
+    color: hsl(0, 0%, 100%) !important;
+  }
+}
+
+.link {
+  color: hsl(0, 0%, 0%);
+
+  &:hover {
+    color: hsl(0, 0%, 0%);
+  }
+}

@@ -1,10 +1,10 @@
 import Image from "next/image";
 import axios from "axios";
 
-import { BsCartPlusFill, BsCartCheckFill } from "react-icons/bs";
+import { TbCurrencyPeso } from "react-icons/tb";
+import { BsCartPlus, BsCartCheck } from "react-icons/bs";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import Placeholder from "react-bootstrap/Placeholder";
-import Badge from "react-bootstrap/Badge";
 import Card from "react-bootstrap/Card";
 
 import { Product } from "@/types/Product";
@@ -85,7 +85,15 @@ export default function DonutCard({
   };
 
   return (
-    <Card style={{ width: "10rem", position: "relative" }}>
+    <Card
+      style={{
+        width: "12rem",
+        position: "relative",
+        backgroundColor: "white",
+        borderRadius: "40px",
+        border: "none",
+      }}
+    >
       <Card.Body className="d-grid" style={{ position: "relative" }}>
         {loading && (
           <Placeholder className="mx-auto" animation="glow">
@@ -144,7 +152,7 @@ export default function DonutCard({
           )}
         </p>
         <div className="d-flex justify-content-between g-3">
-          <p className="fs-6">
+          <p className="fs-5">
             {loading ? (
               <Placeholder animation="glow">
                 <Placeholder
@@ -157,9 +165,10 @@ export default function DonutCard({
                 />
               </Placeholder>
             ) : (
-              <Badge bg="dark" style={{ maxWidth: "max-content" }}>
-                Php {price}
-              </Badge>
+              <strong style={{ color: "hsl(0, 0%, 19%)" }}>
+                <TbCurrencyPeso className="mb-1" style={{ fontSize: 24 }} />
+                {price}.00
+              </strong>
             )}
           </p>
           {loading && (
@@ -175,7 +184,7 @@ export default function DonutCard({
             </Placeholder>
           )}
           {in_cart == 1 && !loading && (
-            <BsCartCheckFill
+            <BsCartCheck
               style={{
                 fontSize: 25,
                 color: "rgba(18, 192, 85, 1)",
@@ -185,7 +194,7 @@ export default function DonutCard({
             />
           )}
           {in_cart == 0 && !loading && (
-            <BsCartPlusFill
+            <BsCartPlus
               style={{ fontSize: 25, cursor: "pointer" }}
               onClick={addToCart}
             />

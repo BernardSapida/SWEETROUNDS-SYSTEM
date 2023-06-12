@@ -12,6 +12,9 @@ import Field from "@/components/form/InputField";
 import { initialValues, validationSchema } from "@/helpers/signin/Form";
 
 import { Alert } from "@/utils/alert/swal";
+import SignInProviders from "./SignInProviders";
+
+import style from "@/public/css/ButtonProvider.module.css";
 
 export default function SigninForm() {
   const [loading, setLoading] = useState<boolean>(false);
@@ -63,25 +66,22 @@ export default function SigninForm() {
           />
           <div className="d-flex justify-content-between mb-3">
             <div>
-              <input className="form-check-input mt-0" type="checkbox" />{" "}
-              Remember me
+              <input className="form-check-input" type="checkbox" /> Remember me
             </div>
             <div>
               <Link href="/forgot_password">Forgot password?</Link>
             </div>
           </div>
           <div className="d-grid gap-2">
-            <Button
-              type="submit"
-              style={{
-                backgroundImage:
-                  "linear-gradient(45deg, rgb(253, 126, 20) 0%, rgb(250, 82, 82) 100%)",
-                border: "none",
-                fontWeight: 500,
-              }}
-            >
+            <Button type="submit" className={`btn ${style.signin_btn}`}>
               Sign In
             </Button>
+            <p
+              className={`mx-auto my-2 text-secondary text-center lh-1 ${style.signin_provider_text}`}
+            >
+              or signin with
+            </p>
+            <SignInProviders />
           </div>
         </Form>
       )}

@@ -5,14 +5,14 @@ import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-import { signIn } from "next-auth/react";
-
 import Field from "@/components/form/InputField";
 
 import { initialValues, validationSchema } from "@/helpers/signup/Form";
 
 import { Alert } from "@/utils/alert/swal";
 import { UserCredential } from "@/types/UserCredential";
+
+import style from "@/public/css/signup.module.css";
 
 export default function SigninForm() {
   const [loading, setLoading] = useState<boolean>(false);
@@ -95,15 +95,7 @@ export default function SigninForm() {
             />
           </div>
           <div className="d-grid gap-2">
-            <Button
-              type="submit"
-              style={{
-                backgroundImage:
-                  "linear-gradient(45deg, rgb(253, 126, 20) 0%, rgb(250, 82, 82) 100%)",
-                border: "none",
-                fontWeight: 500,
-              }}
-            >
+            <Button type="submit" className={`${style.signup_btn}`}>
               Sign Up
             </Button>
           </div>

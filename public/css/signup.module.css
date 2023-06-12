@@ -1,0 +1,12 @@
+.signup_btn {
+  background: hsl(0, 100%, 71%);
+  border: none;
+  font-weight: 500;
+  transition: all 250ms ease-out;
+}
+.signup_btn:hover {
+  background: hsl(0, 100%, 76%);
+}
+.signup_btn:active {
+  background: hsl(0, 100%, 76%) !important;
+}/*# sourceMappingURL=signup.module.css.map */

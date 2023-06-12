@@ -12,7 +12,7 @@ export default function Contact() {
   return (
     <div className="mx-auto">
       <div className="mb-3">
-        <h1 className="text-center mb-4">
+        <h1 className={`text-center mb-4`}>
           {loading ? (
             <Placeholder animation="glow">
               <Placeholder
