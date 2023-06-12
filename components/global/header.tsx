@@ -89,7 +89,6 @@ export default function Header() {
                   } ${link.path === router.route ? style.active : ""}`}
                 >
                   {link.name}
-                  {}
                 </Nav.Link>
               ))}
             </Nav>
