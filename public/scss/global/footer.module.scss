@@ -1,0 +1,20 @@
+.social_accounts {
+  display: grid;
+  height: 44px;
+  width: 44px;
+  background-color: hsl(0, 0%, 100%);
+  border: none;
+  box-shadow: 0 0 10px #c5c5c5;
+  color: hsl(0, 100%, 71%);
+  border-radius: 50%;
+  transition: all 250ms ease-out;
+
+  &:hover {
+    background-color: #ff6d6d;
+    color: hsl(0, 0%, 100%);
+  }
+
+  &:active {
+    background-color: #ff6d6d !important;
+  }
+}

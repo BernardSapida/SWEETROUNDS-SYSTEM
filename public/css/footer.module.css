@@ -1,0 +1,18 @@
+.social_accounts {
+  display: grid;
+  height: 44px;
+  width: 44px;
+  background-color: hsl(0, 0%, 100%);
+  border: none;
+  box-shadow: 0 0 10px #c5c5c5;
+  color: hsl(0, 100%, 71%);
+  border-radius: 50%;
+  transition: all 250ms ease-out;
+}
+.social_accounts:hover {
+  background-color: #ff6d6d;
+  color: hsl(0, 0%, 100%);
+}
+.social_accounts:active {
+  background-color: #ff6d6d !important;
+}/*# sourceMappingURL=footer.module.css.map */

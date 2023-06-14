@@ -1,6 +1,6 @@
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { getSession } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 import Placeholder from "react-bootstrap/Placeholder";
 import Form from "react-bootstrap/Form";
@@ -58,6 +58,9 @@ export default function AccountPage({
   const [productList, setProductList] = useState<Product[]>(products);
   const [pageLoading, setPageLoading] = useState<boolean>(true);
   const [keyword, setKeyword] = useState<string>("");
+  let productCards: JSX.Element[] = [];
+  let cart_number = useRef<number>(0);
+  cart_number.current = 0;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -109,6 +112,25 @@ export default function AccountPage({
     });
   };
 
+  productList.map((product: Product, index: number) => {
+    productCards.push(
+      <Card
+        key={index}
+        index={index}
+        loading={loading[index]}
+        handleImageLoad={handleImageLoad}
+        product={product}
+        updateCart={updateCart}
+        updateFavorites={updateFavorites}
+        user_id={user.id}
+      />
+    );
+
+    if (product.in_cart == 1) cart_number.current += 1;
+  });
+
+  console.log(cart_number.current);
+
   return (
     <>
       <Head>
@@ -146,6 +168,7 @@ export default function AccountPage({
         <Form.Group className="mb-3">
           <Form.Control
             type="text"
+            className="mb-3 shadow border-0"
             placeholder="Search donut by name, flavor, and price"
             onChange={handleSearchInput}
           />
@@ -153,18 +176,7 @@ export default function AccountPage({
       )}
       <div className="d-flex justify-content-center flex-wrap gap-3">
         {productList.length == 0 && <h3 className="mt-3">No donut found!</h3>}
-        {productList.map((product: Product, index: number) => (
-          <Card
-            key={index}
-            index={index}
-            loading={loading[index]}
-            handleImageLoad={handleImageLoad}
-            product={product}
-            updateCart={updateCart}
-            updateFavorites={updateFavorites}
-            user_id={user.id}
-          />
-        ))}
+        {...productCards}
       </div>
     </>
   );

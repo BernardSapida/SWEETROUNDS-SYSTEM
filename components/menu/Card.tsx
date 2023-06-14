@@ -2,7 +2,7 @@ import Image from "next/image";
 import axios from "axios";
 
 import { TbCurrencyPeso } from "react-icons/tb";
-import { BsCartPlus, BsCartCheck } from "react-icons/bs";
+import { BsBagPlus, BsBagCheck } from "react-icons/bs";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import Placeholder from "react-bootstrap/Placeholder";
 import Card from "react-bootstrap/Card";
@@ -86,6 +86,7 @@ export default function DonutCard({
 
   return (
     <Card
+      className="shadow"
       style={{
         width: "12rem",
         position: "relative",
@@ -184,7 +185,7 @@ export default function DonutCard({
             </Placeholder>
           )}
           {in_cart == 1 && !loading && (
-            <BsCartCheck
+            <BsBagCheck
               style={{
                 fontSize: 25,
                 color: "rgba(18, 192, 85, 1)",
@@ -194,7 +195,7 @@ export default function DonutCard({
             />
           )}
           {in_cart == 0 && !loading && (
-            <BsCartPlus
+            <BsBagPlus
               style={{ fontSize: 25, cursor: "pointer" }}
               onClick={addToCart}
             />

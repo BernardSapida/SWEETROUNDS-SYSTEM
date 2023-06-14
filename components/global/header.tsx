@@ -4,8 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 
 import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import Badge from "react-bootstrap/Badge";
+import Nav from "react-bootstrap/Nav";
+
+import { BsBag } from "react-icons/bs";
+
 import { signoutAccount } from "@/helpers/signout/Methods";
 
 import style from "@/public/css/navbar.module.css";
@@ -74,7 +78,7 @@ export default function Header() {
               width="150"
               alt="SweetRounds Banner"
               priority={true}
-            ></Image>
+            />
           </Navbar.Brand>
           <Navbar.Toggle />
           <Navbar.Collapse id="responsive-navbar-nav">
@@ -113,9 +117,19 @@ export default function Header() {
               </Nav.Link>
               <Nav.Link
                 onClick={signout}
-                className={`${style.link} ${session ? "d-block" : "d-none"}`}
+                className={`fs-5 ${session ? "d-block" : "d-none"} ${
+                  style.cart
+                }`}
               >
-                Sign Out
+                <BsBag className="fs-3" />
+                <Badge
+                  pill
+                  bg="warning"
+                  text="dark"
+                  className={style.cart_number}
+                >
+                  0
+                </Badge>
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>

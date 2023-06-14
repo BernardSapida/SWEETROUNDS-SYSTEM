@@ -8,4 +8,18 @@
 }
 .link:hover {
   color: hsl(0, 100%, 81%) !important;
+}
+
+.cart {
+  width: -moz-max-content;
+  width: max-content;
+  position: relative;
+}
+
+.cart_number {
+  position: absolute;
+  bottom: 0;
+  right: 0.1px;
+  color: hsl(0, 0%, 100%) !important;
+  font-size: 12px !important;
 }/*# sourceMappingURL=navbar.module.css.map */

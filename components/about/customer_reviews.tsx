@@ -10,12 +10,11 @@ import style from "@/public/css/about.module.css";
 export default function CustomerReviews() {
   return (
     <section style={{ marginTop: 50, marginBottom: 50 }}>
-      <h2 className="fs-1 text-center mb-4">Customer Reviews</h2>
+      <p className="fs-4 text-center mb-4">Customer Reviews</p>
       <Swiper
         className={`${style.swiper}`}
         modules={[Autoplay, Navigation, Pagination, EffectCoverflow]}
         effect={"coverflow"}
-        slidesPerView={3}
         centeredSlides={true}
         grabCursor={true}
         loop={true}
@@ -23,7 +22,7 @@ export default function CustomerReviews() {
         // navigation={true}
         coverflowEffect={{
           rotate: 0,
-          stretch: 10,
+          stretch: 0,
           depth: 100,
           modifier: 1,
           slideShadows: false,
@@ -35,19 +34,21 @@ export default function CustomerReviews() {
         breakpoints={{
           640: {
             slidesPerView: 1,
+            spaceBetween: 0,
           },
           768: {
             slidesPerView: 2,
-            spaceBetween: 100,
+            spaceBetween: 20,
           },
           1024: {
             slidesPerView: 3,
+            spaceBetween: 30,
           },
         }}
       >
         <SwiperSlide className={`${style.swiper_slide}`}>
           <div
-            className="mx-auto p-4 text-center bg-white"
+            className="mx-auto p-4 text-center bg-white shadow"
             style={{
               borderRadius: 10,
               width: 350,
@@ -78,7 +79,7 @@ export default function CustomerReviews() {
         </SwiperSlide>
         <SwiperSlide className={`${style.swiper_slide}`}>
           <div
-            className="mx-auto p-4 text-center bg-white"
+            className="mx-auto p-4 text-center bg-white shadow"
             style={{
               borderRadius: 10,
               width: 350,
@@ -109,7 +110,7 @@ export default function CustomerReviews() {
         </SwiperSlide>
         <SwiperSlide className={`${style.swiper_slide}`}>
           <div
-            className="mx-auto p-4 text-center bg-white"
+            className="mx-auto p-4 text-center bg-white shadow"
             style={{
               borderRadius: 10,
               width: 350,
@@ -140,7 +141,7 @@ export default function CustomerReviews() {
         </SwiperSlide>
         <SwiperSlide className={`${style.swiper_slide}`}>
           <div
-            className="mx-auto p-4 text-center bg-white"
+            className="mx-auto p-4 text-center bg-white shadow"
             style={{
               borderRadius: 10,
               width: 350,
@@ -170,7 +171,7 @@ export default function CustomerReviews() {
         </SwiperSlide>
         <SwiperSlide className={`${style.swiper_slide}`}>
           <div
-            className="mx-auto p-4 text-center bg-white"
+            className="mx-auto p-4 text-center bg-white shadow"
             style={{
               borderRadius: 10,
               width: 350,
@@ -201,7 +202,7 @@ export default function CustomerReviews() {
         </SwiperSlide>
         <SwiperSlide className={`${style.swiper_slide}`}>
           <div
-            className="mx-auto p-4 text-center bg-white"
+            className="mx-auto p-4 text-center bg-white shadow"
             style={{
               borderRadius: 10,
               width: 350,
@@ -232,7 +233,7 @@ export default function CustomerReviews() {
         </SwiperSlide>
         <SwiperSlide className={`${style.swiper_slide}`}>
           <div
-            className="mx-auto p-4 text-center bg-white"
+            className="mx-auto p-4 text-center bg-white shadow"
             style={{
               borderRadius: 10,
               width: 350,
@@ -263,7 +264,7 @@ export default function CustomerReviews() {
         </SwiperSlide>
         <SwiperSlide className={`${style.swiper_slide}`}>
           <div
-            className="mx-auto p-4 text-center bg-white"
+            className="mx-auto p-4 text-center bg-white shadow"
             style={{
               borderRadius: 10,
               width: 350,
@@ -295,7 +296,7 @@ export default function CustomerReviews() {
         </SwiperSlide>
         <SwiperSlide className={`${style.swiper_slide}`}>
           <div
-            className="mx-auto p-4 text-center bg-white"
+            className="mx-auto p-4 text-center bg-white shadow"
             style={{
               borderRadius: 10,
               width: 350,
@@ -327,7 +328,7 @@ export default function CustomerReviews() {
         </SwiperSlide>
         <SwiperSlide className={`${style.swiper_slide}`}>
           <div
-            className="mx-auto p-4 text-center bg-white"
+            className="mx-auto p-4 text-center bg-white shadow"
             style={{
               borderRadius: 10,
               width: 350,
@@ -358,7 +359,7 @@ export default function CustomerReviews() {
         </SwiperSlide>
         <SwiperSlide className={`${style.swiper_slide}`}>
           <div
-            className="mx-auto p-4 text-center bg-white"
+            className="mx-auto p-4 text-center bg-white shadow"
             style={{
               borderRadius: 10,
               width: 350,
@@ -389,7 +390,7 @@ export default function CustomerReviews() {
         </SwiperSlide>
         <SwiperSlide className={`${style.swiper_slide}`}>
           <div
-            className="mx-auto p-4 text-center bg-white"
+            className="mx-auto p-4 text-center bg-white shadow"
             style={{
               borderRadius: 10,
               width: 350,
@@ -421,7 +422,7 @@ export default function CustomerReviews() {
         </SwiperSlide>
         <SwiperSlide className={`${style.swiper_slide}`}>
           <div
-            className="mx-auto p-4 text-center bg-white"
+            className="mx-auto p-4 text-center bg-white shadow"
             style={{
               borderRadius: 10,
               width: 350,
@@ -453,7 +454,7 @@ export default function CustomerReviews() {
         </SwiperSlide>
         <SwiperSlide className={`${style.swiper_slide}`}>
           <div
-            className="mx-auto p-4 text-center bg-white"
+            className="mx-auto p-4 text-center bg-white shadow"
             style={{
               borderRadius: 10,
               width: 350,

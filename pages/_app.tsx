@@ -1,9 +1,12 @@
 import type { AppProps } from "next/app";
-import Header from "@/components/global/header";
 import NextNProgress from "nextjs-progressbar";
 import { SessionProvider } from "next-auth/react";
 import Head from "next/head";
+
 import Container from "react-bootstrap/Container";
+
+import Header from "@/components/global/header";
+import Footer from "@/components/global/footer";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -44,6 +47,7 @@ export default function App({
           <Component {...pageProps} />
         </Container>
       </main>
+      <Footer />
     </SessionProvider>
   );
 }
