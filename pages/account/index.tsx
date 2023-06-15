@@ -139,9 +139,7 @@ export default function AccountPage({
                 Password
               </Link>
               <Link
-                className={`list-group-item ${style.link} ${
-                  router.query["page"] == "password" && style.active
-                }`}
+                className={`list-group-item ${style.link}`}
                 onClick={signout}
                 href={"/auth/signin"}
               >
