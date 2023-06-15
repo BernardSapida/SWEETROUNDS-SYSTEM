@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import Image from "next/image";
 import axios from "axios";
 
@@ -8,6 +9,7 @@ import Placeholder from "react-bootstrap/Placeholder";
 import Card from "react-bootstrap/Card";
 
 import { Product } from "@/types/Product";
+import CartContext from "@/store/cart_context";
 
 export default function DonutCard({
   index,
@@ -16,6 +18,7 @@ export default function DonutCard({
   product,
   updateCart,
   updateFavorites,
+  toggleToast,
   user_id,
 }: {
   index: number;
@@ -24,8 +27,10 @@ export default function DonutCard({
   product: Product;
   updateCart: any;
   updateFavorites: any;
+  toggleToast: any;
   user_id: number;
 }) {
+  const cartContext = useContext(CartContext);
   let {
     product_id,
     image,
@@ -40,6 +45,7 @@ export default function DonutCard({
 
   const addToCart = async () => {
     updateCart(product_id, 1);
+    cartContext.updateCartNumber(cartContext.cartNumber + 1);
 
     const response = await axios.post(
       `${process.env.NEXT_PUBLIC_URL}/api/v1/cart_items/create`,
@@ -48,10 +54,13 @@ export default function DonutCard({
         user_id: user_id,
       }
     );
+
+    toggleToast(true, "add_cart");
   };
 
   const removeToCart = async () => {
     updateCart(product_id, 0);
+    cartContext.updateCartNumber(cartContext.cartNumber - 1);
 
     const response = await axios.post(
       `${process.env.NEXT_PUBLIC_URL}/api/v1/cart_items/delete`,
@@ -59,6 +68,8 @@ export default function DonutCard({
         cart_id: cart_id,
       }
     );
+
+    toggleToast(true, "remove_cart");
   };
 
   const addToFavorite = async () => {
@@ -71,6 +82,8 @@ export default function DonutCard({
         user_id: user_id,
       }
     );
+
+    toggleToast(true, "add_favorite");
   };
 
   const removeToFavorite = async () => {
@@ -82,6 +95,8 @@ export default function DonutCard({
         favorite_id: favorite_id,
       }
     );
+
+    toggleToast(true, "remove_favorite");
   };
 
   return (
@@ -112,10 +127,10 @@ export default function DonutCard({
           </Placeholder>
         )}
         <Image
-          src={`/donuts/${image}`}
+          src={`/images/donuts/${image}`}
           height="100"
           width="100"
-          alt="SweetRounds Banner"
+          alt="Donut Image"
           className="mx-auto mt-2 mb-3"
           style={{ visibility: `${loading ? "hidden" : "visible"}` }}
           onLoad={() => handleImageLoad(index)}

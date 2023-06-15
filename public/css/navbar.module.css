@@ -18,8 +18,9 @@
 
 .cart_number {
   position: absolute;
-  bottom: 0;
-  right: 0.1px;
+  bottom: 6px;
+  right: -5px;
   color: hsl(0, 0%, 100%) !important;
   font-size: 12px !important;
+  font-weight: light !important;
 }/*# sourceMappingURL=navbar.module.css.map */

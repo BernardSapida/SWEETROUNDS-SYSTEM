@@ -1,4 +1,10 @@
-import { useState, useEffect, SetStateAction, Dispatch } from "react";
+import {
+  useState,
+  useEffect,
+  SetStateAction,
+  Dispatch,
+  useContext,
+} from "react";
 import Link from "next/link";
 
 import Placeholder from "react-bootstrap/Placeholder";
@@ -16,6 +22,7 @@ import { UserInformation } from "@/types/UserInformation";
 import { Setting } from "@/types/Setting";
 import { User } from "@/types/User";
 
+import CartContext from "@/store/cart_context";
 import { Alert } from "@/utils/alert/swal";
 import { Cart } from "@/types/Cart";
 
@@ -48,6 +55,7 @@ export default function Summary({
   });
   const { firstname, lastname, address_line_1, address_line_2, city, contact } =
     userInformation;
+  const cartContext = useContext(CartContext);
 
   useEffect(() => {
     const fetchUserInformation = async () => {
@@ -85,6 +93,7 @@ export default function Summary({
 
       createOrderItems(order_id);
       resetCart();
+      cartContext.updateCartNumber(0);
     }
   };
 
@@ -111,7 +120,7 @@ export default function Summary({
   };
 
   return (
-    <div className={`${style.summary_container} px-3 py-4 bg-white`}>
+    <div className={`${style.summary_container} px-3 py-4 bg-white rounded`}>
       <h1 className={`${style.title} fs-2 mb-4`}>
         {loading ? (
           <Placeholder animation="glow">

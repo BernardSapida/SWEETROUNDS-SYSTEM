@@ -1,4 +1,3 @@
-import Placeholder from "react-bootstrap/Placeholder";
 import DataTable from "react-data-table-component";
 import { BsFillTrashFill } from "react-icons/bs";
 import Spinner from "react-bootstrap/Spinner";
@@ -75,12 +74,12 @@ export default function Table(props: any) {
       selector: (row: Cart) => row.image,
       cell: (row: Cart) => (
         <Image
-          src={`/donuts/${row.image}`}
-          height={80}
-          width={80}
+          src={`/images/donuts/${row.image}`}
+          height="80"
+          width="80"
           alt="Donut Image"
           className="my-2"
-        ></Image>
+        />
       ),
     },
     {

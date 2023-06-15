@@ -2,16 +2,16 @@
   display: grid;
   height: 44px;
   width: 44px;
-  background-color: hsl(0, 0%, 100%);
-  border: none;
+  background-color: hsl(0, 0%, 100%) !important;
+  border: none !important;
   box-shadow: 0 0 10px #c5c5c5;
-  color: hsl(0, 100%, 71%);
-  border-radius: 50%;
-  transition: all 250ms ease-out;
+  color: hsl(0, 100%, 71%) !important;
+  border-radius: 50% !important;
+  transition: all 250ms ease-out !important;
 
   &:hover {
-    background-color: #ff6d6d;
-    color: hsl(0, 0%, 100%);
+    background-color: #ff6d6d !important;
+    color: hsl(0, 0%, 100%) !important;
   }
 
   &:active {

@@ -23,7 +23,7 @@ export default function Table({ orders }: { orders: Order[] }) {
       sortable: true,
       cell: (row: Record<string, any>) => (
         <Image
-          src={`/donuts/${row["image"]}`}
+          src={`/images/donuts/${row["image"]}`}
           height={80}
           width={80}
           alt="Donut Image"

@@ -1,6 +1,6 @@
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { getSession } from "next-auth/react";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useContext } from "react";
 
 import Placeholder from "react-bootstrap/Placeholder";
 import Form from "react-bootstrap/Form";
@@ -13,6 +13,8 @@ import {
   fetchProductList,
   fetchProductListByKeyword,
 } from "@/helpers/Menu/Methods";
+import CartContext from "@/store/cart_context";
+import ToastNotification from "@/components/menu/ToastNotification";
 
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext
@@ -58,9 +60,8 @@ export default function AccountPage({
   const [productList, setProductList] = useState<Product[]>(products);
   const [pageLoading, setPageLoading] = useState<boolean>(true);
   const [keyword, setKeyword] = useState<string>("");
-  let productCards: JSX.Element[] = [];
-  let cart_number = useRef<number>(0);
-  cart_number.current = 0;
+  const [show, setShow] = useState<boolean>(false);
+  const [toastType, setToastType] = useState<string>("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -112,24 +113,10 @@ export default function AccountPage({
     });
   };
 
-  productList.map((product: Product, index: number) => {
-    productCards.push(
-      <Card
-        key={index}
-        index={index}
-        loading={loading[index]}
-        handleImageLoad={handleImageLoad}
-        product={product}
-        updateCart={updateCart}
-        updateFavorites={updateFavorites}
-        user_id={user.id}
-      />
-    );
-
-    if (product.in_cart == 1) cart_number.current += 1;
-  });
-
-  console.log(cart_number.current);
+  const toggleToast = (show: boolean, type: string = toastType) => {
+    setToastType(type);
+    setShow(show);
+  };
 
   return (
     <>
@@ -176,8 +163,25 @@ export default function AccountPage({
       )}
       <div className="d-flex justify-content-center flex-wrap gap-3">
         {productList.length == 0 && <h3 className="mt-3">No donut found!</h3>}
-        {...productCards}
+        {productList.map((product: Product, index: number) => (
+          <Card
+            key={index}
+            index={index}
+            loading={loading[index]}
+            handleImageLoad={handleImageLoad}
+            product={product}
+            updateCart={updateCart}
+            updateFavorites={updateFavorites}
+            toggleToast={toggleToast}
+            user_id={user.id}
+          />
+        ))}
       </div>
+      <ToastNotification
+        toggleToast={toggleToast}
+        show={show}
+        toastType={toastType}
+      />
     </>
   );
 }

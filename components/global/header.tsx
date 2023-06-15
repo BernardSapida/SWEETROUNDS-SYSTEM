@@ -1,5 +1,6 @@
-import { useSession, signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import { useContext } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -10,13 +11,14 @@ import Nav from "react-bootstrap/Nav";
 
 import { BsBag } from "react-icons/bs";
 
-import { signoutAccount } from "@/helpers/signout/Methods";
+import CartContext from "@/store/cart_context";
 
 import style from "@/public/css/navbar.module.css";
 
 export default function Header() {
   const router = useRouter();
   const { data: session } = useSession();
+  const cartContext = useContext(CartContext);
 
   const links = [
     {
@@ -50,15 +52,6 @@ export default function Header() {
       show: session,
     },
   ];
-
-  const signout = async () => {
-    signOut({
-      redirect: false,
-    });
-
-    router.push("/auth/signin");
-    await signoutAccount(session?.user.email!);
-  };
 
   return (
     <>
@@ -115,8 +108,20 @@ export default function Header() {
               >
                 Sign Up
               </Nav.Link>
+
               <Nav.Link
-                onClick={signout}
+                as={"span"}
+                href={"/cart"}
+                className={`fs-5 ${session ? "d-block" : "d-none"} ${
+                  style.cart
+                }`}
+              >
+                <p className="lh-1 my-0 fs-6 text-secondary">Welcome,</p>
+                <p className="lh-1 my-1 fs-6 text-secondary">{`${session?.user.firstname} ${session?.user.lastname}`}</p>
+              </Nav.Link>
+              <Nav.Link
+                as={Link}
+                href={"/cart"}
                 className={`fs-5 ${session ? "d-block" : "d-none"} ${
                   style.cart
                 }`}
@@ -128,7 +133,7 @@ export default function Header() {
                   text="dark"
                   className={style.cart_number}
                 >
-                  0
+                  {cartContext.cartNumber}
                 </Badge>
               </Nav.Link>
             </Nav>

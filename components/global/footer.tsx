@@ -104,6 +104,10 @@ export default function footer() {
           </div>
         </Col>
       </Row>
+      <hr />
+      <p className="text-center text-secondary lh-1 my-0">
+        &copy; 2023 Copyright Donut Company. All rights reserved.
+      </p>
     </footer>
   );
 }

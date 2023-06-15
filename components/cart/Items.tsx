@@ -33,7 +33,7 @@ export default function Items({
         note={note}
         setNote={setNote}
       />
-      <div style={{ width: "100%" }}>
+      <div className="w-100 rounded">
         <div className="d-flex justify-content-between align-items-center mb-2">
           <h1 className={`${style.title} fs-2`}>
             {loading ? (

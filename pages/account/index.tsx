@@ -1,4 +1,5 @@
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
+import { useSession, signOut } from "next-auth/react";
 import { getSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
@@ -15,12 +16,15 @@ import { Product } from "@/types/Product";
 import { Order } from "@/types/Order";
 import { User } from "@/types/User";
 
+import { signoutAccount } from "@/helpers/signout/Methods";
+
 import {
   fetchFavoriteDonut,
   fetchOrderHistory,
 } from "@/helpers/accounts/Methods";
 
 import style from "@/public/css/accounts.module.css";
+import { Button } from "react-bootstrap";
 
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext
@@ -67,9 +71,19 @@ export default function AccountPage({
   orderHistory: Order[];
 }) {
   const [pageLoading, setPageLoading] = useState<boolean>(true);
+  const { data: session } = useSession();
   const router = useRouter();
 
   useEffect(() => setPageLoading(false), []);
+
+  const signout = async () => {
+    signOut({
+      redirect: false,
+    });
+
+    router.push("/auth/signin");
+    await signoutAccount(session?.user.email!);
+  };
 
   return (
     <>
@@ -123,6 +137,15 @@ export default function AccountPage({
                 href="/account?page=password"
               >
                 Password
+              </Link>
+              <Link
+                className={`list-group-item ${style.link} ${
+                  router.query["page"] == "password" && style.active
+                }`}
+                onClick={signout}
+                href={"/auth/signin"}
+              >
+                Sign Out
               </Link>
             </div>
           )}

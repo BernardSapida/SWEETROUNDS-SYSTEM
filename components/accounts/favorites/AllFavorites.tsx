@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Head from "next/head";
 
+import ToastNotification from "@/components/menu/ToastNotification";
 import Card from "@/components/menu/Card";
 import { Product } from "@/types/Product";
 import { User } from "@/types/User";
@@ -14,6 +15,8 @@ export default function AccountPage({
 }) {
   const [loading, setLoading] = useState<boolean[]>(Array(100).fill(true));
   const [productList, setProductList] = useState<Product[]>(favoriteDonuts);
+  const [show, setShow] = useState<boolean>(false);
+  const [toastType, setToastType] = useState<string>("");
 
   const updateCart = (id: number, value: number) => {
     const updatedList = [...productList];
@@ -43,6 +46,11 @@ export default function AccountPage({
     });
   };
 
+  const toggleToast = (show: boolean, type: string = toastType) => {
+    setToastType(type);
+    setShow(show);
+  };
+
   return (
     <>
       <Head>
@@ -69,12 +77,18 @@ export default function AccountPage({
                 product={product}
                 updateCart={updateCart}
                 updateFavorites={updateFavorites}
+                toggleToast={toggleToast}
                 user_id={user.id}
               />
             </div>
           ))}
         </div>
       </div>
+      <ToastNotification
+        toggleToast={toggleToast}
+        show={show}
+        toastType={toastType}
+      />
     </>
   );
 }
