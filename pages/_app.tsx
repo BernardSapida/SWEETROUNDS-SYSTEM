@@ -10,7 +10,6 @@ import Footer from "@/components/global/footer";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import { CartContextProvider } from "@/store/cart_context";
-import { getServerSideProps } from "./account";
 
 export default function App({
   Component,
