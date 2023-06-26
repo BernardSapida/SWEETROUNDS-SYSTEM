@@ -1,5 +1,9 @@
+import FreshDonuts from "@/components/home/FreshDonuts";
+import Landing from "@/components/home/Landing";
+import Offers from "@/components/home/Offers";
 import Head from "next/head";
-// import "@/feed/order_items";
+import Image from "next/image";
+import Button from "react-bootstrap/Button";
 
 export default function HomePage() {
   return (
@@ -7,7 +11,9 @@ export default function HomePage() {
       <Head>
         <title>Sweet Rounds | Home</title>
       </Head>
-      <h1>Home</h1>
+      <Landing />
+      <Offers />
+      <FreshDonuts />
     </>
   );
 }

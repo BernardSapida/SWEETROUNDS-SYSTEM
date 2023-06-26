@@ -19,7 +19,7 @@ import style from "@/public/css/footer.module.css";
 
 export default function footer() {
   return (
-    <footer className="p-5 bg-white shadow">
+    <footer className="px-5 pt-5 bg-white border-top">
       <Row className="mx-0">
         <Col lg={3} md={6} sm={12}>
           <Image

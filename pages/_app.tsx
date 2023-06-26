@@ -11,6 +11,8 @@ import Footer from "@/components/global/footer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { CartContextProvider } from "@/store/cart_context";
 
+import "@/public/css/home.css";
+
 export default function App({
   Component,
   pageProps: { session, ...pageProps },

@@ -1,0 +1,32 @@
+body {
+  & section {
+    & div.landing-left {
+      height: auto;
+      max-width: 500px !important;
+      width: 100%;
+    }
+
+    & div.landing-img {
+      & img {
+        display: block;
+        height: auto;
+        max-width: 500px !important;
+        width: 100%;
+      }
+    }
+
+    & button {
+      background-color: hsl(0, 100%, 71%) !important;
+      border: none !important;
+
+      &:hover {
+        background-color: hsl(0, 100%, 81%) !important;
+      }
+    }
+
+    & div.offers {
+      width: 150px;
+      height: 180px;
+    }
+  }
+}

@@ -60,7 +60,7 @@ export default function Header() {
         expand="lg"
         bg="light"
         variant="light"
-        className="bg-white"
+        className="bg-white shadow-sm"
         sticky="top"
       >
         <Container>
