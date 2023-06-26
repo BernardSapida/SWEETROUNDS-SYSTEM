@@ -70,6 +70,14 @@ export default function AccountPage({
       <Head>
         <title>Sweet Rounds | Checkout</title>
       </Head>
+      {setting.accepting_order == 0 && (
+        <div className="bg-danger rounded py-2 px-3 mb-3">
+          <p className="mt-1 text-white lh-0 my-0">
+            Sorry, the store is already closed and you can{"'"}t place an order
+            now.
+          </p>
+        </div>
+      )}
       <Row>
         <Col md={7} sm={12}>
           <Items

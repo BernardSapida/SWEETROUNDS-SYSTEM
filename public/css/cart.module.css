@@ -18,6 +18,9 @@
 .placeorder_btn:active {
   background: hsl(0, 100%, 76%) !important;
 }
+.placeorder_btn:disabled {
+  background: hsl(0, 100%, 76%) !important;
+}
 
 .summary_container {
   width: "100%";

@@ -43,7 +43,7 @@ export default function Summary({
   user: User;
   setItems: Dispatch<SetStateAction<Cart[]>>;
 }) {
-  const { tax, shipping_fee, discount } = setting;
+  const { tax, shipping_fee, discount, accepting_order } = setting;
   const [donutTotal, setDonutTotal] = useState<number>(0);
   const [userInformation, setUserInformation] = useState<UserInformation>({
     firstname: "",
@@ -80,6 +80,18 @@ export default function Summary({
   };
 
   const placeOrder = async () => {
+    if (
+      firstname == null ||
+      lastname == null ||
+      address_line_1 == null ||
+      address_line_2 == null ||
+      city == null ||
+      contact == null
+    ) {
+      Alert("error", "Invalid Shipping Address", "Edit you shipping address!");
+      return;
+    }
+
     if (cart_items.length === 0) {
       Alert("error", "Empty Donut", "Add donuts to your cart!");
     } else {
@@ -328,15 +340,27 @@ export default function Summary({
         <>
           <div className="mb-3">
             <p className="fs-6 lh-1 mb-2 text-secondary">{`${firstname} ${lastname}`}</p>
-            <p className="fs-6 lh-1 mb-2 text-secondary">{address_line_1}</p>
-            <p className="fs-6 lh-1 mb-2 text-secondary">{contact}</p>
+            <p className="fs-6 lh-1 mb-2 text-secondary">
+              {address_line_1 || "Address Line 1 is not set yet"}
+            </p>
+            <p className="fs-6 lh-1 mb-2 text-secondary">
+              {contact || "Contact # is not set yet"}
+            </p>
           </div>
           <div className="mb-3">
-            <p className="fs-6 lh-1 mb-2 text-secondary">{address_line_2}</p>
-            <p className="fs-6 lh-1 mb-2 text-secondary">{city}</p>
+            <p className="fs-6 lh-1 mb-2 text-secondary">
+              {address_line_2 || "Address Line 2 is not set yet"}
+            </p>
+            <p className="fs-6 lh-1 mb-2 text-secondary">
+              {city || "City is not set yet"}
+            </p>
           </div>
           <div className="d-grid">
-            <Button className={`${style.placeorder_btn}`} onClick={placeOrder}>
+            <Button
+              className={`${style.placeorder_btn}`}
+              onClick={placeOrder}
+              disabled={accepting_order == 0}
+            >
               <BsCartFill className="mb-2" /> Place Order
             </Button>
           </div>

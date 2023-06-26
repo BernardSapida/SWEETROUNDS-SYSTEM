@@ -19,6 +19,10 @@
   &:active {
     background: hsl(0, 100%, 76%) !important;
   }
+
+  &:disabled {
+    background: hsl(0, 100%, 76%) !important;
+  }
 }
 
 .summary_container {
