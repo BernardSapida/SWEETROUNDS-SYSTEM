@@ -12,7 +12,7 @@ import { User } from "@/types/User";
 import {
   fetchProductList,
   fetchProductListByKeyword,
-} from "@/helpers/Menu/Methods";
+} from "@/helpers/menuu/Methods";
 import CartContext from "@/store/cart_context";
 import ToastNotification from "@/components/menu/ToastNotification";
 

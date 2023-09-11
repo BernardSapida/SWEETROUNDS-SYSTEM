@@ -1,11 +1,11 @@
-import { fetchProductList } from "@/helpers/Menu/Methods";
+import { fetchProductList } from "@/helpers/menuu/Methods";
 import { Product } from "@/types/Product";
 import { useSession } from "next-auth/react";
 import { createContext, useEffect, useState } from "react";
 
 const CartContext = createContext({
   cartNumber: 0,
-  updateCartNumber: function (quantity: number) {},
+  updateCartNumber: function (quantity: number) { },
 });
 
 export function CartContextProvider(props: any) {
