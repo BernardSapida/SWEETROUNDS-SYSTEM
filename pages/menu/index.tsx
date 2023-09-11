@@ -1,6 +1,6 @@
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { getSession } from "next-auth/react";
-import { useEffect, useState, useRef, useContext } from "react";
+import { useEffect, useState } from "react";
 
 import Placeholder from "react-bootstrap/Placeholder";
 import Form from "react-bootstrap/Form";
@@ -13,7 +13,6 @@ import {
   fetchProductList,
   fetchProductListByKeyword,
 } from "@/helpers/menu/Methods";
-import CartContext from "@/store/cart_context";
 import ToastNotification from "@/components/menu/ToastNotification";
 
 export const getServerSideProps: GetServerSideProps = async (

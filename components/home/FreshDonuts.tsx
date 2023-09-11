@@ -1,7 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export default function FreshDonuts() {
+import { User } from "@/types/User";
+
+export default function FreshDonuts({ user }: { user: User | null }) {
   return (
     <section className="my-5">
       <div className="d-flex flex-wrap align-items-center justify-content-center gap-5">
@@ -13,7 +15,7 @@ export default function FreshDonuts() {
             Our donuts are made with the finest ingredients, ensuring every bite is a delightful experience. Whether you prefer classic flavors or daring combinations, we have a tempting variety to choose from. Dive into a world of sweetness, order your favorite donuts today, and let the magic of SweetRounds make every moment a treat.
           </p>
           <Link
-            href="menu"
+            href={user ? '/menu' : '/auth/signin'}
             className="btn btn-primary"
           >
             Order Now

@@ -1,7 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export default function Landing() {
+import { User } from "@/types/User";
+
+export default function Landing({ user }: { user: User | null }) {
   return (
     <section className="my-5">
       <div className="d-flex flex-wrap align-items-center justify-content-center gap-5">
@@ -15,7 +17,7 @@ export default function Landing() {
             Welcome to SweetRounds, your ultimate destination for delectable donuts that will tantalize your taste buds and satisfy your sweet cravings.
           </p>
           <Link
-            href="menu"
+            href={user ? '/menu' : '/auth/signin'}
             className="btn btn-primary"
           >
             Order Now
