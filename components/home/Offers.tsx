@@ -18,7 +18,7 @@ export default function Offers() {
             priority={true}
             className="d-block mx-auto"
           />
-          <p className="text-center lh-1 my-0 mt-3 fw-bold">Appetizing Dough</p>
+          <p className="text-center lh-0 mt-3 mb-0 fw-bold">Appetizing Dough</p>
         </div>
         <div className="offers rounded shadow p-3">
           <Image
@@ -29,7 +29,7 @@ export default function Offers() {
             priority={true}
             className="d-block mx-auto"
           />
-          <p className="text-center lh-1 my-0 mt-3 fw-bold">Extra Round</p>
+          <p className="text-center lh-0 mt-3 mb-0 fw-bold">Extra Round</p>
         </div>
         <div className="offers rounded shadow p-3">
           <Image
@@ -40,7 +40,7 @@ export default function Offers() {
             priority={true}
             className="d-block mx-auto"
           />
-          <p className="text-center lh-1 my-0 mt-3 fw-bold">
+          <p className="text-center lh-0 mt-3 mb-0 fw-bold">
             Literally Sugarcoated
           </p>
         </div>
@@ -53,7 +53,7 @@ export default function Offers() {
             priority={true}
             className="d-block mx-auto"
           />
-          <p className="text-center lh-1 my-0 mt-3 fw-bold">Refined Flavors</p>
+          <p className="text-center lh-0 mt-3 mb-0 fw-bold">Refined Flavors</p>
         </div>
       </div>
     </section>

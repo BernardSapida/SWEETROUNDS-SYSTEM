@@ -53,6 +53,8 @@ export default function Header() {
     },
   ];
 
+  console.log(session)
+
   return (
     <>
       <Navbar
@@ -81,9 +83,8 @@ export default function Header() {
                   key={link.name}
                   as={Link}
                   href={link.path}
-                  className={`${style.link} ${
-                    link.show ? "d-block" : "d-none"
-                  } ${link.path === router.route ? style.active : ""}`}
+                  className={`${style.link} ${link.show ? "d-block" : "d-none"
+                    } ${link.path === router.route ? style.active : ""}`}
                 >
                   {link.name}
                 </Nav.Link>
@@ -93,18 +94,16 @@ export default function Header() {
               <Nav.Link
                 as={Link}
                 href={"/auth/signin"}
-                className={`${style.link} ${
-                  router.asPath == "/auth/signin" ? style.active : ""
-                } ${!session ? "d-block" : "d-none"}`}
+                className={`${style.link} ${router.asPath == "/auth/signin" ? style.active : ""
+                  } ${!session ? "d-block" : "d-none"}`}
               >
                 Sign In
               </Nav.Link>
               <Nav.Link
                 as={Link}
                 href={"/signup"}
-                className={`${style.link} ${
-                  router.asPath == "/signup" ? style.active : ""
-                } ${!session ? "d-block" : "d-none"}`}
+                className={`${style.link} ${router.asPath == "/signup" ? style.active : ""
+                  } ${!session ? "d-block" : "d-none"}`}
               >
                 Sign Up
               </Nav.Link>
@@ -112,9 +111,8 @@ export default function Header() {
               <Nav.Link
                 as={"span"}
                 href={"/cart"}
-                className={`fs-5 ${session ? "d-block" : "d-none"} ${
-                  style.cart
-                }`}
+                className={`fs-5 ${session ? "d-block" : "d-none"} ${style.cart
+                  }`}
               >
                 <p className="lh-1 my-0 fs-6 text-secondary">Welcome,</p>
                 <p className="lh-1 my-1 fs-6 text-secondary">{`${session?.user.firstname} ${session?.user.lastname}`}</p>
@@ -122,9 +120,8 @@ export default function Header() {
               <Nav.Link
                 as={Link}
                 href={"/cart"}
-                className={`fs-5 ${session ? "d-block" : "d-none"} ${
-                  style.cart
-                }`}
+                className={`fs-5 ${session ? "d-block" : "d-none"} ${style.cart
+                  }`}
               >
                 <BsBag className="fs-3" />
                 <Badge

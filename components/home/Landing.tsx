@@ -1,5 +1,5 @@
+import Link from "next/link";
 import Image from "next/image";
-import Button from "react-bootstrap/Button";
 
 export default function Landing() {
   return (
@@ -12,11 +12,14 @@ export default function Landing() {
             Donuts For You
           </h1>
           <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia
-            aliquam qui aspernatur quasi sequi incidunt corrupti officiis porro
-            odit rerum.
+            Welcome to SweetRounds, your ultimate destination for delectable donuts that will tantalize your taste buds and satisfy your sweet cravings.
           </p>
-          <Button>Order Now</Button>
+          <Link
+            href="menu"
+            className="btn btn-primary"
+          >
+            Order Now
+          </Link>
         </div>
         <div className="landing-img">
           <Image

@@ -1,5 +1,5 @@
+import Link from "next/link";
 import Image from "next/image";
-import Button from "react-bootstrap/Button";
 
 export default function FreshDonuts() {
   return (
@@ -10,11 +10,14 @@ export default function FreshDonuts() {
             Get fresh donuts in a<br /> reasonable price
           </h1>
           <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia
-            aliquam qui aspernatur quasi sequi incidunt corrupti officiis porro
-            odit rerum.
+            Our donuts are made with the finest ingredients, ensuring every bite is a delightful experience. Whether you prefer classic flavors or daring combinations, we have a tempting variety to choose from. Dive into a world of sweetness, order your favorite donuts today, and let the magic of SweetRounds make every moment a treat.
           </p>
-          <Button>Order Now</Button>
+          <Link
+            href="menu"
+            className="btn btn-primary"
+          >
+            Order Now
+          </Link>
         </div>
         <div className="landing-img">
           <Image

@@ -7,11 +7,9 @@ import ButtonProvider from "@/components/signin/ButtonProvider";
 
 export default function SignInProviders(props: any) {
   const signInProvider = async (providerName: string) => {
-    props.open();
     const res = await signIn(providerName, {
       callbackUrl: `https://sweetrounds.vercel.app/menu`,
     });
-    props.close();
   };
 
   return (

@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
@@ -84,23 +83,23 @@ export default function footer() {
         <Col lg={3} md={6} sm={12}>
           <p className="fs-4 fw-bold">Social Accounts</p>
           <div className="d-flex align-items-center gap-2 mx-auto">
-            <Button type="button" className={`${style.social_accounts}`}>
+            <a className={`${style.social_accounts}`}>
               <AiOutlineGoogle style={{ fontSize: 20, placeSelf: "center" }} />
-            </Button>
-            <Button type="button" className={`${style.social_accounts}`}>
+            </a>
+            <a className={`${style.social_accounts}`}>
               <FaFacebookF style={{ fontSize: 20, placeSelf: "center" }} />
-            </Button>
-            <Button type="button" className={`${style.social_accounts}`}>
+            </a>
+            <a className={`${style.social_accounts}`}>
               <AiOutlineTwitter style={{ fontSize: 20, placeSelf: "center" }} />
-            </Button>
-            <Button type="button" className={`${style.social_accounts}`}>
+            </a>
+            <a className={`${style.social_accounts}`}>
               <AiOutlineInstagram
                 style={{ fontSize: 20, placeSelf: "center" }}
               />
-            </Button>
-            <Button type="button" className={`${style.social_accounts}`}>
+            </a>
+            <a className={`${style.social_accounts}`}>
               <FaGithub style={{ fontSize: 20, placeSelf: "center" }} />
-            </Button>
+            </a>
           </div>
         </Col>
       </Row>

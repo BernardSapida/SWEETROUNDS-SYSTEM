@@ -9,14 +9,14 @@ body section div.landing-img img {
   max-width: 500px !important;
   width: 100%;
 }
-body section button {
+body section a {
   background-color: hsl(0, 100%, 71%) !important;
   border: none !important;
 }
-body section button:hover {
+body section a:hover {
   background-color: hsl(0, 100%, 81%) !important;
 }
 body section div.offers {
-  width: 150px;
-  height: 180px;
+  width: 250px;
+  height: 100%;
 }/*# sourceMappingURL=home.css.map */

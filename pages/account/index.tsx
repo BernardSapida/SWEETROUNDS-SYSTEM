@@ -24,7 +24,6 @@ import {
 } from "@/helpers/accounts/Methods";
 
 import style from "@/public/css/accounts.module.css";
-import { Button } from "react-bootstrap";
 
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext
@@ -107,33 +106,29 @@ export default function AccountPage({
           ) : (
             <div className="list-group" id="list-tab" role="tablist">
               <Link
-                className={`list-group-item ${style.link} ${
-                  router.query["page"] == undefined && style.active
-                }`}
+                className={`list-group-item ${style.link} ${router.query["page"] == undefined && style.active
+                  }`}
                 href="/account"
               >
                 Order History
               </Link>
               <Link
-                className={`list-group-item ${style.link} ${
-                  router.query["page"] == "profile_information" && style.active
-                }`}
+                className={`list-group-item ${style.link} ${router.query["page"] == "profile_information" && style.active
+                  }`}
                 href="/account?page=profile_information"
               >
                 Profile Information
               </Link>
               <Link
-                className={`list-group-item ${style.link} ${
-                  router.query["page"] == "favorites" && style.active
-                }`}
+                className={`list-group-item ${style.link} ${router.query["page"] == "favorites" && style.active
+                  }`}
                 href="/account?page=favorites"
               >
                 Favorites
               </Link>
               <Link
-                className={`list-group-item ${style.link} ${
-                  router.query["page"] == "password" && style.active
-                }`}
+                className={`list-group-item ${style.link} ${router.query["page"] == "password" && style.active
+                  }`}
                 href="/account?page=password"
               >
                 Password

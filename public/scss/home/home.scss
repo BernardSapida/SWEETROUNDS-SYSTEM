@@ -15,7 +15,7 @@ body {
       }
     }
 
-    & button {
+    & a {
       background-color: hsl(0, 100%, 71%) !important;
       border: none !important;
 
@@ -25,8 +25,8 @@ body {
     }
 
     & div.offers {
-      width: 150px;
-      height: 180px;
+      width: 250px;
+      height: 100%;
     }
   }
 }
