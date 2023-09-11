@@ -1,4 +1,4 @@
-import { fetchProductList } from "@/helpers/menuu/Methods";
+import { fetchProductList } from "@/helpers/menu/Methods";
 import { Product } from "@/types/Product";
 import { useSession } from "next-auth/react";
 import { createContext, useEffect, useState } from "react";
